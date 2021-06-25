@@ -31,5 +31,8 @@ module.exports = {
   devServer: {
     open: 'http://localhost:8080', // 启动项目自动弹出
     proxy: 'http://localhost:8083', // 代理
+  },
+  headers: {
+    'Access-Control-Allow-Origin': '*' // 任何域都可访问
   }
 }

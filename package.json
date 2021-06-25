@@ -11,6 +11,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.14.0",
     "element-ui": "^2.15.2",
     "iview": "^3.5.4",

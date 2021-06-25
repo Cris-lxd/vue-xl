@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/home'
 import Login from './views/login/index'
 import Regist from './views/login/regist.vue'
-import Content from './views/content/index'
 import MyInfo from './views/content/myInfo/index'
 
 Vue.use(Router)
@@ -23,11 +22,6 @@ export default new Router({
           path: '',
           name: 'myInfo',
           component: MyInfo
-        },
-        {
-          path: '/content',
-          name: 'content',
-          component: Content
         }
       ]
     },
