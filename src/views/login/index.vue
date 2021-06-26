@@ -1,5 +1,7 @@
 <template>
-  <div class="login_container">
+  <div class="login_container" v-loading="loginLoading" element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)">
     <div class="tab">
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
           <FormItem prop="user">
@@ -27,6 +29,7 @@
   export default {
     data () {
       return {
+        loginLoading: false,
         formInline: {
           user: '',
           password: ''
@@ -43,15 +46,23 @@
     },
     methods: {
       handleSubmit() {
-        this.$refs.formInline.validate((valid) => {
-          if (valid) {
-            this.$Message.success('登陆成功');
+        this.loginLoading = true
+        const params = {
+          username: this.formInline.user,
+          password: this.formInline.password
+        }
+        this.$api.post(this.common.login, params).then(({ data }) => {
+          if (data.code == 0) {
+            this.$message.success('登陆成功')
             setTimeout(() => {
               this.$router.push('/home')
-            }, 300)
+              this.loginLoading = false
+          }, 1000)
           } else {
-            this.$Message.error('登陆失败');
+            this.$message.success(data.data)
           }
+        }).finally(() => {
+          this.loginLoading = false
         })
       },
       regist() {

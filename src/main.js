@@ -4,6 +4,7 @@ import router from './router'
 import ElementUI from 'element-ui';
 import api from './request/api'
 import 'element-ui/lib/theme-chalk/index.css';
+import common from './request/common'
 
 Vue.use(ElementUI);
 // 引入 i-view UI组件
@@ -13,6 +14,7 @@ import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI)
 
 Vue.prototype.$api = api
+Vue.prototype.common = common
 
 
 // Vue.config.productionTip = false

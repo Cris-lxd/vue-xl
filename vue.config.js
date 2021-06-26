@@ -1,4 +1,6 @@
 
+const proxyUrl = process.env.VUE_APP_BASE_URL // 根据环境不同配置不同的域名
+
 
 module.exports = {
   publicPath: './', // 输出的路径地址跟着
@@ -29,10 +31,26 @@ module.exports = {
     sourceMap: true, // 准确无误告诉 css 样式在哪里
   },
   devServer: {
-    open: 'http://localhost:8080', // 启动项目自动弹出
-    proxy: 'http://localhost:8083', // 代理
+    open: true, // 启动项目自动弹出
+    // proxy: 'http://49.234.96.50:8083',
+    proxy: {
+      '^/api': {
+        target: proxyUrl,
+        changeOrigin:true,
+        pathRewrite: {
+          '^/api' : '' // 匹配上 /lxl 重写置空
+        }
+      },
+      '^/uat': {
+        target: proxyUrl,
+        changeOrigin:true,
+        pathRewrite: {
+          '^/uat' : '' // 匹配上 /lxl 重写置空
+        }
+      },
+    }, // 代理
+    headers: {
+      'Access-Control-Allow-Origin': '*' // 任何域都可访问
+    }
   },
-  headers: {
-    'Access-Control-Allow-Origin': '*' // 任何域都可访问
-  }
 }

@@ -11,12 +11,6 @@ export default {
 
     }
   },
-  created() {
-    console.log(this.$api, 'api')
-    this.$api.get('/user/12345').then(res => {
-      console.log(res, '接口')
-    })
-  },
   methods: {}
 }
 </script>
