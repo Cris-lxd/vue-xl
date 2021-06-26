@@ -59,7 +59,7 @@
               this.loginLoading = false
           }, 1000)
           } else {
-            this.$message.success(data.data)
+            this.$message.error(data.data)
           }
         }).finally(() => {
           this.loginLoading = false
