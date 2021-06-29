@@ -1,5 +1,5 @@
 <template>
-  <div class="login_container" v-loading="loginLoading" element-loading-text="拼命加载中"
+  <div class="login_container" v-loading="loginLoading" element-loading-text="正在登陆..."
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)">
     <div class="tab">
@@ -18,7 +18,7 @@
               <div class="btn_style">
                 <Button type="primary" @click="handleSubmit('formInline')">登陆</Button>
                 <Button type="primary" @click="clear('formInline')">重置</Button>
-                <Button  type="default" @click="regist" ghost>注册</Button>
+                <Button  type="default" @click="regist">注册</Button>
               </div>
           </FormItem>
       </Form>
@@ -75,23 +75,7 @@
   }
 </script>
 <style scoped lang="less">
-.login_container{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: black;
-  .tab{
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    .btn_style{
-      display: flex;
-      justify-content: space-around;
-    }
-  }
-}
+@import './login.less' ;
 </style>
 <style scoped>
 .ivu-form-inline .ivu-form-item{

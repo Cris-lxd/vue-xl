@@ -4,6 +4,7 @@ import Home from './views/home'
 import Login from './views/login/index'
 import Regist from './views/login/regist.vue'
 import MyInfo from './views/content/myInfo/index'
+import List from './views/content/List/index.vue'
 
 Vue.use(Router)
 
@@ -22,7 +23,12 @@ export default new Router({
           path: '',
           name: 'myInfo',
           component: MyInfo
-        }
+        },
+        {
+          path: '/list',
+          name: 'list',
+          component: List
+        },
       ]
     },
     {
