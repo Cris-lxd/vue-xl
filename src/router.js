@@ -22,11 +22,19 @@ export default new Router({
         {
           path: '',
           name: 'myInfo',
+          meta: '个人信息',
+          component: MyInfo
+        },
+        {
+          path: '/myInfo',
+          name: 'myInfo',
+          meta: '个人信息',
           component: MyInfo
         },
         {
           path: '/list',
           name: 'list',
+          meta: '列表',
           component: List
         },
       ]
@@ -38,6 +46,7 @@ export default new Router({
         {
           path: '/login',
           name: 'login',
+          meta: '登陆',
           component: Login,
         },
       ]
@@ -45,6 +54,7 @@ export default new Router({
     {
       path: '/regist',
       name: 'regist',
+      meta: '注册',
       component: Regist,
     },
   ]

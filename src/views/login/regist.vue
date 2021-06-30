@@ -6,8 +6,8 @@
       <h2 class="text-style">欢迎注册</h2>
       <p class="text-style text-style-p">每一天，乐在进步！</p>
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
-        <FormItem prop="name">
-              <Input type="text" v-model="formInline.name" placeholder="昵称">
+        <FormItem prop="username">
+              <Input type="text" v-model="formInline.username" placeholder="昵称">
                   <Icon type="logo-tux" slot="prepend"/>
               </Input>
           </FormItem>
@@ -16,11 +16,6 @@
                   <Icon type="ios-lock-outline" slot="prepend"></Icon>
               </Input>
           </FormItem>
-          <!-- <FormItem prop="user">
-              <Input type="text" @on-focus="isFocus = true" @on-blur="isFocus = false" v-model="formInline.user" placeholder="手机号">
-                <Icon type="logo-apple" slot="prepend"/>
-              </Input>
-          </FormItem> -->
           <div class="code-style">
             <FormItem prop="code">
                 <Input type="text" v-model="formInline.code" placeholder="验证码">
@@ -35,7 +30,6 @@
   </div>
 </template>
 <script>
-  import { setLocaStorage } from '@/utils/index.js'
   export default {
     data () {
       var validator = (rule, value, callback) => {
@@ -55,12 +49,12 @@
         isFocus: false,
         randomList: [1,2,3,4,5,6,7,8,9,0,'A','B','C', 'D'],
         formInline: {
-          name: '',
+          username: '',
           password: '',
           code: '',
         },
         ruleInline: {
-          name: [
+          username: [
             { required: true, message: '昵称不可为空', trigger: 'blur' }
           ],
           password: [
@@ -89,13 +83,19 @@
           if (valid) {
             this.loading = true
             this.btnLoading = true
-            this.$message.success('注册成功，即将跳转')
-            setLocaStorage('user', JSON.stringify(this.formInline))
-            setTimeout(() => {
+            this.$api.post(this.common.registry, this.formInline).then(({data}) => {
+              if (data.code == 0) {
+                this.$message.success(`${data.data}，即将跳转登陆页`)
+                setTimeout(() => {
+                  this.$router.push('/login')
+                }, 2000)
+              } else {
+                this.$message.error(data.data)
+              }
+            }).finally(() => {
               this.loading = false
               this.btnLoading = false
-              this.$router.push('/home')
-            }, 2000)
+            })
           }
         })
       },
@@ -110,14 +110,14 @@
 </script>
 <style scoped lang="less">
 @import './login.less';
+</style>
+<style scoped>
 .text-style{
   color: black;
 }
 .text-style-p{
   padding-bottom: 20px;
 }
-</style>
-<style scoped>
 .ivu-form-inline .ivu-form-item{
   display: block;
 }

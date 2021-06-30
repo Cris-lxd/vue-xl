@@ -1,5 +1,7 @@
-const login = '/admin/login'
-
-export default{
-  login
+const common = {
+  login: '/admin/login',
+  registry: '/admin/registry'
+}
+export default {
+  common
 }

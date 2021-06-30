@@ -1,5 +1,5 @@
 <template>
-  <div class="login_container" v-loading="loginLoading" element-loading-text="正在登陆..."
+  <div class="login_container" :style="height" v-loading="loginLoading" element-loading-text="正在登陆..."
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)">
     <div class="tab">
@@ -30,6 +30,7 @@
     data () {
       return {
         loginLoading: false,
+        height: { height: 'calc(100vh)'},
         formInline: {
           user: '',
           password: ''
@@ -54,6 +55,8 @@
         this.$api.post(this.common.login, params).then(({ data }) => {
           if (data.code == 0) {
             this.$message.success('登陆成功')
+            this.$store.commit('setUserInfo', data.data)
+            console.log(this.$store.state, 'state')
             setTimeout(() => {
               this.$router.push('/home')
               this.loginLoading = false
