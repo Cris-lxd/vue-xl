@@ -12,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.request.use((request) => {
   request.data = qs.stringify(request.data) // formData 传值需要转成后台所认知的有效数据
-  request.headers.token = stroe.state.userinfo.token
+  request.headers.token = stroe.state.userinfo ? stroe.state.userinfo.token : ''
   return request
 }, (error) => {
   console.log(error, '请求错误')

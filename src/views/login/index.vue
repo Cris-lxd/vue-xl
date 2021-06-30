@@ -59,6 +59,7 @@
             console.log(this.$store.state, 'state')
             setTimeout(() => {
               this.$router.push('/home')
+              this.$router.go(0)
               this.loginLoading = false
           }, 1000)
           } else {
