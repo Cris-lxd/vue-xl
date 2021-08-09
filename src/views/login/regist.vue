@@ -25,7 +25,7 @@
             <Button type="warning" @click="randomCode">{{ codeText }}</Button>
           </div>
       </Form>
-      <Button style="width:100%;margin-top:10px" type="primary" :loading="btnLoading" icon="ios-power" @click="handleSubmit('formInline')">立即注册</Button>
+      <Button style="width:100%;margin-top:10px" type="primary" :loading="btnLoading"  @click="handleSubmit('formInline')">立即注册</Button>
     </div>
   </div>
 </template>

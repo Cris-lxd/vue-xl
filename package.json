@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.14.0",
+    "echarts": "^5.1.2",
     "element-ui": "^2.15.2",
     "iview": "^3.5.4",
     "less": "^4.1.1",

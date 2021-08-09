@@ -11,6 +11,7 @@
                 <DropdownMenu slot="list">
                   <DropdownItem @click.native="alertinfo">个人信息</DropdownItem>
                   <DropdownItem @click.native="logout">登出</DropdownItem>
+                  <DropdownItem @click.native="warning">预警信息</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
           </div>
@@ -57,6 +58,11 @@ export default {
     },
     alertinfo() {
       this.$router.push('myInfo')
+    },
+    warning(){
+      setTimeout(() => {
+        this.$router.push('/warningInfo')
+      }, 0)
     }
   }
 }

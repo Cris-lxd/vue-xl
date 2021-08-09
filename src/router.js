@@ -5,6 +5,7 @@ import Login from './views/login/index'
 import Regist from './views/login/regist.vue'
 import MyInfo from './views/content/myInfo/index'
 import List from './views/content/List/index.vue'
+import WarningInfo from './views/content/List/warningInfo'
 
 Vue.use(Router)
 
@@ -57,5 +58,11 @@ export default new Router({
       meta: '注册',
       component: Regist,
     },
+    {
+      path: '/warningInfo',
+      name: 'warningInfo',
+      meta: '预警信息',
+      component: WarningInfo,
+    }
   ]
 })

@@ -4,9 +4,9 @@ import router from './router'
 import ElementUI from 'element-ui';
 import api from './request/api'
 import 'element-ui/lib/theme-chalk/index.css';
-import common from './request/common'
-import store from './store/index'
-
+import common from './request/common';
+import store from './store/index';
+import * as echarts from 'echarts';
 Vue.use(ElementUI);
 // 引入 i-view UI组件
 
@@ -14,7 +14,8 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI)
 console.log(common, 'common')
-Vue.prototype.$api = api
+Vue.prototype.$api = api;
+Vue.prototype.$echarts = echarts
 Vue.prototype.common = common.common
 
 
