@@ -1,9 +1,9 @@
 <template>
   <div class="warning-container">
     <div class="head">
-      <div class="head-search">
-<!--        时间选择-->
-        <div>
+<!--      <div class="head-search">
+&lt;!&ndash;        时间选择&ndash;&gt;
+&lt;!&ndash;        <div>
           <Row>
             <Col span="7">
               预警时间：
@@ -41,9 +41,9 @@
               </Select>
             </Col>
           </Row>
-        </div>
-<!--      单选-->
-        <div style="padding-left:30px">
+        </div>&ndash;&gt;
+&lt;!&ndash;      单选&ndash;&gt;
+&lt;!&ndash;        <div style="padding-left:30px">
             <span>是否分发：</span>
               <RadioGroup v-model="type">
                 <Radio label="是"></Radio>
@@ -56,8 +56,9 @@
             <Radio label="是"></Radio>
             <Radio label="否"></Radio>
           </RadioGroup>
-        </div>
-<!--      查询按钮-->
+        </div>&ndash;&gt;
+&lt;!&ndash;      查询按钮&ndash;&gt;
+
         <div class="search-item">
           <Button type="primary">查询</Button>
         </div>
@@ -65,6 +66,54 @@
       <div class="head-menu">
         <Icon type="ios-sad-outline" size="30" style="float:right"/>
         <Icon type="ios-sad-outline" size="30"  style="float:right"/>
+      </div>-->
+      <div class="head-text"><span>预警时间：</span></div>
+      <div class="head-selection">
+        <span>
+          <DatePicker type="date" placeholder="Select date"></DatePicker>
+        </span>
+      </div>
+      <div class="head-largeText"><span>预警确认时间段：</span></div>
+      <div class="head-selection">
+        <span>
+          <DatePicker type="date" placeholder="Select date"></DatePicker>
+        </span>
+      </div>
+      <div class="head-selection">
+        <span>
+          <DatePicker type="date" placeholder="Select date"></DatePicker>
+        </span>
+      </div>
+      <div class="head-text"><span>预警级别：</span></div>
+      <div class="head-selection">
+        <span>
+          <Select v-model="model11" filterable>
+            <Option v-for="item in cityList"  :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </span>
+      </div>
+      <div class="head-text"><span>是否分发：</span></div>
+      <div>
+        <span>
+          <RadioGroup v-model="type">
+            <Radio label="是"></Radio>
+            <Radio label="否"></Radio>
+          </RadioGroup>
+        </span>
+      </div>
+      <div class="head-largeText"><span>是否无效预警：</span></div>
+      <div >
+        <span>
+          <RadioGroup v-model="type1">
+            <Radio label="是"></Radio>
+            <Radio label="否"></Radio>
+          </RadioGroup>
+        </span>
+      </div>
+      <div class="head-text">
+        <span>
+          <Button type="primary" @click="handleSubmit()">查询</Button>
+        </span>
       </div>
     </div>
 
@@ -154,18 +203,33 @@ export default {
       ],
       model1: '',
       type: '是',
-      type1: '是',
+      type1: '否',
       value1: '',
+      dataList: {},
     }
   },
   mounted() {
+    this.initPieChart();
+    this.initBarChart();
     this.$nextTick(() =>{
-      this.initPieChart();
-      this.initBarChart();
+      this.initData();
     })
   },
   methods: {
+    /**
+     * 初始化数据
+     */
+    initData(){
+      this.$api.get(this.common.warning, null).then(({ data }) => {
+        if(data.code == 200){
+          console.log(data)
+        }
+      })
+    },
+
     initPieChart(){
+      let width = this.$refs.pieChart.style.width;
+      console.log(width);
       this.$echarts.init(document.getElementById('pieChart')).setOption({
         tooltip: {
           trigger: 'item'
@@ -268,6 +332,13 @@ export default {
           }
         ]
       })
+    },
+
+    /**
+     * 查询提交
+     */
+    handleSubmit(){
+
     }
 
   }
@@ -281,10 +352,47 @@ export default {
   height:100%;
   .head{
     height:60px;
+    width:100%;
     //background-color: #0abcdf;
     display: flex;          //设置子元素位置居中
     align-items: center;
     //justify-content: center;
+    .head-text{
+      width:4%;
+      height:70%;
+      //background-color: #cd2e2e;
+      margin-left: 1%;
+      text-align: center;
+      display:table;
+      span{
+        display:table-cell;
+        vertical-align:middle;
+      }
+    }
+    .head-largeText{
+      width:7%;
+      height:70%;
+      //background-color: #cd2e2e;
+      margin-left: 1%;
+      text-align: center;
+      display:table;
+      span{
+        display:table-cell;
+        vertical-align:middle;
+      }
+    }
+
+    .head-selection{
+      width:11%;
+      height:70%;
+      //background-color: #21aa58;
+      margin-left: 0.5%;
+      display:table;
+      span{
+        display:table-cell;
+        vertical-align:middle;
+      }
+    }
     .head-search{
       height:80%;
       width:85%;

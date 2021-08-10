@@ -1,5 +1,6 @@
 
-const proxyUrl = process.env.VUE_APP_BASE_URL // 根据环境不同配置不同的域名
+// const proxyUrl = process.env.VUE_APP_BASE_URL2 // 根据环境不同配置不同的域名
+const proxyUrl = 'http://47.110.13.171:9003';
 
 
 module.exports = {

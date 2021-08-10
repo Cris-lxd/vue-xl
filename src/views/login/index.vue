@@ -48,26 +48,30 @@
     methods: {
       handleSubmit() {
         this.loginLoading = true
-        const params = {
-          username: this.formInline.user,
-          password: this.formInline.password
-        }
-        this.$api.post(this.common.login, params).then(({ data }) => {
-          if (data.code == 0) {
-            this.$message.success('登陆成功')
-            this.$store.commit('setUserInfo', data.data)
-            console.log(this.$store.state, 'state')
-            setTimeout(() => {
-              this.$router.push('/home')
-              this.$router.go(0)
-              this.loginLoading = false
-          }, 1000)
-          } else {
-            this.$message.error(data.data)
-          }
-        }).finally(() => {
-          this.loginLoading = false
-        })
+        // const params = {
+        //   username: this.formInline.user,
+        //   password: this.formInline.password
+        // }
+        // this.$api.post(this.common.login, params).then(({ data }) => {
+        //   if (data.code == 0) {
+        //     this.$message.success('登陆成功')
+        //     this.$store.commit('setUserInfo', data.data)
+        //     console.log(this.$store.state, 'state')
+        //     setTimeout(() => {
+        //       this.$router.push('/home')
+        //       this.$router.go(0)
+        //       this.loginLoading = false
+        //   }, 1000)
+        //   } else {
+        //     this.$message.error(data.data)
+        //   }
+        // }).finally(() => {
+        //   this.loginLoading = false
+        // })
+        this.$message.success('登陆成功')
+        this.$router.push('/warningInfo')
+        this.$router.go(0)
+        this.loginLoading = false
       },
       regist() {
         this.$router.push('regist')
