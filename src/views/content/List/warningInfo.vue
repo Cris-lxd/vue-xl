@@ -72,62 +72,54 @@
     <div class="isView">
       <div class="numData">
         <div class="discover">
-          <div class="cameraImage">
-<!--            <img src="../../../assets/warninginfo/cameraImage.png">-->
+          <!-- <div class="cameraImage">
           </div>
           <div class="discover-content">
             <div class="content-num">1,160</div>
             <div class="content-text">预警发现</div>
-          </div>
+          </div> -->
+           <img src="@/assets/warninginfo/cameraImage.png">
+           <div class="discover-tetx">
+             <span>1,160</span>
+             <p>预警发现</p>
+           </div>
         </div>
         <div class="distributed">
-          <div class="distributed-num">1,160</div>
-          <div class="distributed-text">已分发</div>
-        </div>
-        <div class="verified">
-          <div class="verified-num">1,160</div>
-          <div class="verified-text">已核查</div>
+          <div class="distributed-item">
+            <span class="distributed-num">1,160</span>
+            <p class="distributed-text">已核查</p>
+          </div>
+          <div class="distributed-item">
+            <span class="distributed-num">1,160</span>
+            <p class="distributed-text">已核查</p>
+          </div>
         </div>
       </div>
-      <div class="pieChart" id="pieChart"></div>
-      <div class="barChart" id="barChart"></div>
+      <div class="pieChart" style="height:300px" id="pieChart"></div>
+      <div class="barChart" style="height:300px" id="barChart"></div>
     </div>
 
     <div class="dataInfo">
-      <div class="data-item">
-        <div class="item-image"></div>
-<!--        <div class="item-content"><span>预警类别： 违法建房</span></div>-->
-<!--        <div class="item-content">预警时间： 2020年12月16日 12:20</div>-->
-<!--        <div class="item-content">是否分类： 是</div>-->
-                <div class="item-content"></div>
-                <div class="item-content"></div>
-                <div class="item-content"></div>
-        <div class="item-detail"></div>
+      <!-- <div class="data-item">
+      </div> -->
+      <div class="data-item" v-for="(item, index) in 25" :key="index">
+        <!-- <div class="item-image"></div> -->
+          <img class="item-image" src="@/assets/logo.png" alt="">
+          <div>
+            <p class="item-content"><span>预警类别： 违法建房</span></p>
+            <p class="item-content">预警时间： 2020年12月16日 12:20</p>
+            <div class="is-text">
+              <span class="item-content">是否分发： 是</span>
+              <span class="item-content">是否核查： 否</span>
+            </div>
+          </div>
+          <!-- <div class="item-content"><span>预警类别： 违法建房</span></div>
+          <div class="item-content">预警时间： 2020年12月16日 12:20</div>
+          <div class="item-content">是否分类： 是</div> -->
+        <div class="item-detail">
+          <Button :size="buttonSize" type="primary">按钮</Button>
+        </div>
       </div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
-      <div class="data-item"></div>
     </div>
   </div>
 
@@ -152,21 +144,7 @@ export default {
           label: '高级'
         },
       ],
-      model1: '',
-      type: '是',
-      type1: '是',
-      value1: '',
-    }
-  },
-  mounted() {
-    this.$nextTick(() =>{
-      this.initPieChart();
-      this.initBarChart();
-    })
-  },
-  methods: {
-    initPieChart(){
-      this.$echarts.init(document.getElementById('pieChart')).setOption({
+      pieOptions: { // initPieChart 方法使用 options
         tooltip: {
           trigger: 'item'
         },
@@ -204,11 +182,8 @@ export default {
             }
           }
         ]
-      })
-    },
-
-    initBarChart(){
-      this.$echarts.init(document.getElementById('barChart')).setOption({
+      },
+      barOpptions: { // initBarChart 方法使用 options
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -267,7 +242,26 @@ export default {
             data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
           }
         ]
-      })
+      },
+      model1: '',
+      type: '是',
+      type1: '是',
+      value1: '',
+    }
+  },
+  mounted() {
+    this.$nextTick(() =>{
+      this.initPieChart();
+      this.initBarChart();
+    })
+  },
+  methods: {
+    initPieChart(){
+      this.$echarts.init(document.getElementById('pieChart')).setOption(this.pieOptions)
+    },
+
+    initBarChart(){
+      this.$echarts.init(document.getElementById('barChart')).setOption(this.barOpptions)
     }
 
   }
@@ -316,71 +310,38 @@ export default {
   .isView{
     width:25%;
     height:calc(100% - 60px);
-    //margin-top:110px;
     float:left;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
     .numData{
       width: 90%;
       height:30%;
       margin-left: 5%;
       .discover{
         width:100%;
-        height:45%;
+        height:120px;
         background-color: #ffffff;
-        //margin-left:20px;
+        padding-left:50px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        .cameraImage{
-          width:30%;
-          height:80%;
-          background-image: url("../../../assets/warninginfo/cameraImage.png");
-          background-size: 100%;
-        }
-        .discover-content{
-          width:30%;
-          height:90%;
-          margin-left: 10%;
-          .content-num{
-            width:100%;
-            height:60%;
-            text-align:center;
-            font-weight:bold;
-            font-size:30px;
-            line-height:100%;
-            padding-top: 10%;
-          }
-          .content-text{
-            width:100%;
-            height:40%;
-            text-align:center;
-            font-weight:bold;
+        .discover-tetx{
+          padding-left: 20px;
+          span{
+            font-size: 20px;
+            font-weight: 600;
           }
         }
       }
       .distributed{
-        width:45%;
-        height: 45%;
-        float:left;
-        //margin-left:20px;
-        margin-top:6%;
-        background-color: #ffffff;
-        .distributed-num{
-          width:100%;
-          height:60%;
-          text-align:center;
-          font-weight:bold;
-          font-size:30px;
-          line-height:100%;
-          padding-top: 10%;
-        }
-        .distributed-text{
-          width:100%;
-          height:40%;
-          text-align:center;
-          font-weight:bold;
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+        .distributed-item{
+          flex: 1;
+          background: #fff;
+          padding: 20px 10px;
+          text-align: center;
+          &:last-child{
+            margin-left: 20px;
+          }
         }
       }
       .verified{
@@ -425,18 +386,23 @@ export default {
   .dataInfo{
     width:74%;
     height:calc(100% - 60px);
-    //margin-top:110px;
     margin-left: 1%;
     float:left;
-    background-color: #bfa443;
     overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
     .data-item{
       width:19%;
-      height:35%;
-      background-color: #ff4d51;
-      margin-right: 1%;
-      margin-bottom: 0.5%;
+      // height:35%;
+      min-height:150px;
+      background-color: #fff;
+      margin-right: 11px;
+      margin-bottom: 11px;
       display:inline-block;
+      &:last-child{
+        margin-right: 0;
+        margin-bottom: 0;
+      }
       .item-image{
         width:90%;
         height:45%;
@@ -448,13 +414,18 @@ export default {
         width:90%;
         height:10%;
         margin-left:5%;
-        background-color: #e88216;
+      }
+      .is-text{
+        // display: flex;
+        // justify-content: space-between;
       }
       .item-detail{
-        width:90%;
-        height:15%;
-        margin-left:5%;
-        background-color: #a61fcd;
+        display: flex;
+        justify-content: center;
+        .ivu-btn-primary{
+          width: 100px;
+          margin-top: 12px;
+        }
       }
     }
   }
