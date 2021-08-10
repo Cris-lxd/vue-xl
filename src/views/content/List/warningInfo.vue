@@ -228,8 +228,6 @@ export default {
     },
 
     initPieChart(){
-      let width = this.$refs.pieChart.style.width;
-      console.log(width);
       this.$echarts.init(document.getElementById('pieChart')).setOption({
         tooltip: {
           trigger: 'item'
