@@ -7,7 +7,7 @@
           <div>
               <Dropdown class="info-style">
                 <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
-                <span class="login-name" size="large">{{userinfo.user.username}}</span>
+                <span v-if="userinfo" class="login-name" size="large">{{userinfo.user.username}}</span>
                 <DropdownMenu slot="list">
                   <DropdownItem @click.native="alertinfo">个人信息</DropdownItem>
                   <DropdownItem @click.native="logout">登出</DropdownItem>

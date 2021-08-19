@@ -16,13 +16,18 @@
                   <Icon type="ios-lock-outline" slot="prepend"></Icon>
               </Input>
           </FormItem>
+          <FormItem prop="num">
+              <Input type="number" v-model="formInline.num" placeholder="手机号">
+                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
+              </Input>
+          </FormItem>
           <div class="code-style">
             <FormItem prop="code">
                 <Input type="text" v-model="formInline.code" placeholder="验证码">
                     <Icon type="ios-send" slot="prepend"/>
                 </Input>
             </FormItem>
-            <Button type="warning" @click="randomCode">{{ codeText }}</Button>
+            <Button :disabled="btnDisabled" type="warning" @click="randomCode">{{ codeText ? codeText : '获取验证码' }}</Button>
           </div>
       </Form>
       <Button style="width:100%;margin-top:10px" type="primary" :loading="btnLoading"  @click="handleSubmit('formInline')">立即注册</Button>
@@ -32,26 +37,28 @@
 <script>
   export default {
     data () {
-      var validator = (rule, value, callback) => {
-        if (value == '') {
-          callback(new Error('验证码不可为空'))
-        } else if (value != this.codeText) {
-          callback(new Error('验证码错误'))
+      // /^1[0-9]{10}$/.test(s)
+      var handleNum = ((rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('请输入手机号'))
+        } else if (!/^1[0-9]{10}$/.test(value)) {
+          return callback(new Error('请输入正确手机号'))
         } else {
           callback()
         }
-        console.log(rule, value, callback, 'rule, value, callback')
-      }
+      })
       return {
-        codeText: '',
+        btnDisabled: false,
+        codeText: '获取验证码',
         loading: false,
         btnLoading: false,
         isFocus: false,
-        randomList: [1,2,3,4,5,6,7,8,9,0,'A','B','C', 'D'],
+        verificationCode: '',
         formInline: {
           username: '',
           password: '',
-          code: '',
+          num: '',
+          code: ''
         },
         ruleInline: {
           username: [
@@ -60,27 +67,50 @@
           password: [
             { required: true, message: '密码不能为空', trigger: 'blur' },
           ],
+          num: [
+            { validator: handleNum, trigger: 'blur' },
+          ],
           code: [
-            { validator: validator, trigger: 'blur' }
+            { required: true, message: '验证码不能为空', trigger: 'blur' },
           ],
         }
       }
     },
     created() {
-      this.randomCode()
     },
     methods: {
       randomCode() {
         this.codeText = ''
-        for (let i = 0; i < 4; i++) {
-          let index = Math.floor(Math.random()*13)
-          this.codeText += this.randomList[index]
+        this.btnDisabled = true
+        var num = 59
+        const params = {
+          phoneNumber: this.formInline.num
         }
+        this.$api.post(this.common.getVerifiedCode, params).then(({data}) => {
+          console.log(data, 'res')
+          if (data.code == 0) {
+            this.verificationCode = data.data
+          }
+        })
+        let time = setInterval(() => {
+          if (num <= 0) {
+            this.btnDisabled = false
+            this.codeText = '重新发送验证码'
+            this.verificationCode = ''
+            clearInterval(time)
+            return
+          }
+          this.codeText = `${num--}秒后，重新发送`
+        }, 1000)
       },
       handleSubmit() {
         if(this.btnLoading) return
         this.$refs.formInline.validate((valid) => {
           if (valid) {
+            if (this.verificationCode != this.formInline.code) {
+              this.$message.error('验证码不正确，重新输入')
+              return
+            }
             this.loading = true
             this.btnLoading = true
             this.$api.post(this.common.registry, this.formInline).then(({data}) => {
@@ -120,6 +150,7 @@
 }
 .ivu-form-inline .ivu-form-item{
   display: block;
+  width: 100%;
 }
 .ivu-form-item .ivu-form-item-required{
   width: 100%;

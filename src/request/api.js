@@ -2,8 +2,10 @@ import axios from 'axios'
 import qs from 'qs'
 import stroe from '@/store/index'
 
+
+
 const api = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 100000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'

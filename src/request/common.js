@@ -1,6 +1,7 @@
 const common = {
   login: '/admin/login',
-  registry: '/admin/registry'
+  registry: '/admin/registry',
+  getVerifiedCode: '/admin/getVerifiedCode'
 }
 export default {
   common

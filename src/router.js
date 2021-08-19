@@ -6,6 +6,7 @@ import Regist from './views/login/regist.vue'
 import MyInfo from './views/content/myInfo/index'
 import List from './views/content/List/index.vue'
 import WarningInfo from './views/content/List/warningInfo'
+import notfound from './views/notfound'
 
 Vue.use(Router)
 
@@ -63,6 +64,16 @@ export default new Router({
       name: 'warningInfo',
       meta: '预警信息',
       component: WarningInfo,
+    },
+    {
+      path: '/notfound',
+      name: 'notfound',
+      meta: '404',
+      component: notfound
+    },
+    {
+      path: '*',
+      redirect: '/notfound'
     }
   ]
 })

@@ -4,7 +4,7 @@ const proxyUrl = process.env.VUE_APP_BASE_URL // 根据环境不同配置不同�
 
 module.exports = {
   publicPath: './', // 输出的路径地址跟着
-  outputDir: 'lxl_dist', // 输出的文件名
+  outputDir: 'dist', // 输出的文件名
   assetsDir: 'assets', // 输出的静态文件统一放在这个文件夹下
   indexPath: 'index.html', // 输出的静态文件
   // filenameHashing: true, // 控制静态文件 hash
@@ -32,20 +32,38 @@ module.exports = {
   },
   devServer: {
     open: true, // 启动项目自动弹出
+    port: '8084',
     // proxy: 'http://49.234.96.50:8083',
     proxy: {
+      'lala': {
+        target: proxyUrl, // 需要访问的真实地址
+        changeOrigin:true, // 开启代理
+        pathRewrite: {
+          'lala' : '' // 匹配上 /lxl 重写置空
+        }
+        // logLevel: 'debug',/
+      },
       '^/api': {
         target: proxyUrl,
         changeOrigin:true,
+        logLevel: 'debug',
         pathRewrite: {
           '^/api' : '' // 匹配上 /lxl 重写置空
         }
       },
-      '^/uat': {
+      'uat': {
         target: proxyUrl,
         changeOrigin:true,
         pathRewrite: {
-          '^/uat' : '' // 匹配上 /lxl 重写置空
+          'uat' : 'lala' // 匹配上 /lxl 重写置空
+        }
+      },
+      'pre': {
+        target: proxyUrl,
+        changeOrigin:true,
+        logLevel: 'debug',
+        pathRewrite: {
+          '^/pre' : '' // 匹配上 /lxl 重写置空
         }
       },
     }, // 代理
