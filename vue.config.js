@@ -13,7 +13,7 @@ module.exports = {
       entry: 'src/main.js',
       template: 'public/index.html',
       filename: 'index.html',
-      title: '刘铁柱',
+      title: '大项目',
 
     }
   },

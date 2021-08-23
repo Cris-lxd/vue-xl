@@ -9,7 +9,7 @@
                 <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
                 <span v-if="userinfo" class="login-name" size="large">{{userinfo.user.username}}</span>
                 <DropdownMenu slot="list">
-                  <DropdownItem @click.native="alertinfo">个人信息</DropdownItem>
+                  <DropdownItem @click.native="alertinfo">个人信111息</DropdownItem>
                   <DropdownItem @click.native="logout">登出</DropdownItem>
                   <DropdownItem @click.native="warning">预警信息</DropdownItem>
                 </DropdownMenu>
