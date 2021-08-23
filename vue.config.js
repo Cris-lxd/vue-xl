@@ -3,7 +3,7 @@ const proxyUrl = process.env.VUE_APP_BASE_URL // 根据环境不同配置不同�
 
 
 module.exports = {
-  publicPath: './', // 输出的路径地址跟着
+  publicPath: './', // 输出的路径地址跟着 。/ （为任意路径，相对路径）
   outputDir: 'dist', // 输出的文件名
   assetsDir: 'assets', // 输出的静态文件统一放在这个文件夹下
   indexPath: 'index.html', // 输出的静态文件
@@ -14,7 +14,6 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
       title: '大项目',
-
     }
   },
   lintOnSave: 'error',
@@ -23,7 +22,13 @@ module.exports = {
   productionSourceMap: false, // 为true准确无误的告知什么地方错了
   // crossorigin: 'use-credentials', // 设置 使用CORS的方式加载
   // integrity: true, // <script> 标签上启用 Subresource Integrity (SRI)
-  configureWebpack: {}, // 可以写 webpack 的配置
+  configureWebpack: {
+    externals:{
+      'vue':'Vue',
+      'element-ui':'ELEMENT',
+      'vue-router':'VueRouter'
+    },
+  }, // 可以写 webpack 的配置
   chainWebpack: (() => {}), // 链式 webpack 配置
   css: {
     // requireModuleExtension: false,
