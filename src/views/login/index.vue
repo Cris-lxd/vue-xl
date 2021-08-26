@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+  import { setLocaStorage } from '@/utils'
   export default {
     data () {
       return {
@@ -55,13 +56,11 @@
         this.$api.post(this.common.login, params).then(({ data }) => {
           if (data.code == 0) {
             this.$message.success('登陆成功')
-            this.$store.commit('setUserInfo', data.data)
             console.log(this.$store.state, 'state')
-            setTimeout(() => {
-              this.$router.push('/home')
-              this.$router.go(0)
-              this.loginLoading = false
-          }, 1000)
+            this.loginLoading = false
+            setLocaStorage('setUserInfo', data.data)
+            setLocaStorage('token', data.data.token)
+            this.$router.push('/')
           } else {
             this.$message.error(data.data)
           }

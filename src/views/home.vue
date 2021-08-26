@@ -10,7 +10,7 @@
                 <span v-if="userinfo" class="login-name" size="large">{{userinfo.user.username}}</span>
                 <DropdownMenu slot="list">
                   <DropdownItem @click.native="alertinfo">个人信111息</DropdownItem>
-                  <DropdownItem @click.native="logout">登出</DropdownItem>
+                  <DropdownItem @click.native="logout">退出登陆</DropdownItem>
                   <DropdownItem @click.native="warning">预警信息</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -23,6 +23,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { removeStorage } from '@/utils'
 import navBar from './navBar/index.vue'
 export default {
   components: {
@@ -50,8 +51,8 @@ export default {
   methods: {
     logout() {
       this.$message.success("即将退出登陆")
-      sessionStorage.removeItem("user", null)
-      sessionStorage.removeItem("token", null)
+      removeStorage('setUserInfo')
+      removeStorage("token")
       setTimeout(() => {
         this.$router.push('/login')
       }, 1000)

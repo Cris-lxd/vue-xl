@@ -11,6 +11,18 @@ export default {
 
     }
   },
+  created() {
+    console.log(1)
+    this.$api.post(this.common.test).then(({ data }) => {
+      console.log(data, 'data')
+      if (data.code == 0) {
+        this.$message.error('情况')
+      } else {
+        this.$message.error(data.message)
+      }
+    }).finally(() => {
+    })
+  },
   methods: {}
 }
 </script>

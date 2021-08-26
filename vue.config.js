@@ -1,6 +1,8 @@
 
 const proxyUrl = process.env.VUE_APP_BASE_URL // 根据环境不同配置不同的域名
 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 
 module.exports = {
   publicPath: './', // 输出的路径地址跟着 。/ （为任意路径，相对路径）
@@ -23,13 +25,22 @@ module.exports = {
   // crossorigin: 'use-credentials', // 设置 使用CORS的方式加载
   // integrity: true, // <script> 标签上启用 Subresource Integrity (SRI)
   configureWebpack: {
-    externals:{
-      'vue':'Vue',
-      'element-ui':'ELEMENT',
-      'vue-router':'VueRouter'
-    },
   }, // 可以写 webpack 的配置
-  chainWebpack: (() => {}), // 链式 webpack 配置
+  chainWebpack: (config) => {
+    // config.plugin('html').use(HtmlWebpackPlugin).tap(args => {
+    //   var cdn = {
+    //     externals: {
+    //       vue: 'Vue',
+    //     },
+    //     js: [
+    //       'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'
+    //     ]
+    //   }
+    //   args.cdn = cdn
+    //   // }
+    //   return args
+    // })
+  }, // 链式 webpack 配置
   css: {
     // requireModuleExtension: false,
     // extract: true,
@@ -51,7 +62,7 @@ module.exports = {
       '^/api': {
         target: proxyUrl,
         changeOrigin:true,
-        logLevel: 'debug',
+        // logLevel: 'debug',
         pathRewrite: {
           '^/api' : '' // 匹配上 /lxl 重写置空
         }
@@ -66,7 +77,7 @@ module.exports = {
       'pre': {
         target: proxyUrl,
         changeOrigin:true,
-        logLevel: 'debug',
+        // logLevel: 'debug',
         pathRewrite: {
           '^/pre' : '' // 匹配上 /lxl 重写置空
         }

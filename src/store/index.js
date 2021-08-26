@@ -8,8 +8,8 @@ export default new Vuex.Store({
     userinfo: JSON.parse(sessionStorage.getItem('setUserInfo'))
   },
   mutations: {
-    setUserInfo(state, value) {
-      sessionStorage.setItem('setUserInfo', JSON.stringify(value))
-    }
+    // setUserInfo(state, value) {
+    //   sessionStorage.setItem('setUserInfo', JSON.stringify(value))
+    // }
   },
 })

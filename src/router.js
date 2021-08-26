@@ -1,40 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home'
-import Login from './views/login/index'
-import Regist from './views/login/regist.vue'
-import MyInfo from './views/content/myInfo/index'
-import List from './views/content/List/index.vue'
-import WarningInfo from './views/content/List/warningInfo'
-import notfound from './views/notfound'
+
+import { Message } from 'element-ui';
+import { getStorage } from '@/utils'
+
+const Home = () => import('./views/home')
+const Login = () => import('./views/login/index')
+const Regist = () => import('./views/login/regist.vue')
+const MyInfo = () => import('./views/content/myInfo/index')
+const List = () => import('./views/content/List/index.vue')
+const WarningInfo = () => import('./views/content/List/warningInfo')
+const notfound = () => import('./views/notfound')
+
+
+Vue.prototype.$message = Message
 
 Vue.use(Router)
 
-// Router.beforeEach((to, form, next) => {
-  // next()
-// })
-
-export default new Router({
+const routers = new Router({
   mode: 'hash',
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Home,
+      redirect: '/myInfo',
       children: [
         {
-          path: '',
+          path: 'myInfo',
           name: 'myInfo',
           meta: '个人信息',
           component: MyInfo
         },
         {
-          path: '/myInfo',
-          name: 'myInfo',
-          meta: '个人信息',
-          component: MyInfo
-        },
-        {
-          path: '/list',
+          path: 'list',
           name: 'list',
           meta: '列表',
           component: List
@@ -42,16 +40,9 @@ export default new Router({
       ]
     },
     {
-      path: '/',
+      path: '/login',
+      name: 'login',
       component: Login,
-      children: [
-        {
-          path: '/login',
-          name: 'login',
-          meta: '登陆',
-          component: Login,
-        },
-      ]
     },
     {
       path: '/regist',
@@ -77,3 +68,25 @@ export default new Router({
     }
   ]
 })
+
+const notTokenPath = ['login', 'regist', 'notfound', 'warningInfo']
+
+routers.beforeEach((to, form, next) => {
+  if(getStorage('token')) {
+    if(to.path === '/login') {
+      next({ path: '/myInfo' })
+    } else {
+      next()
+    }
+  } else  {
+   if(notTokenPath.indexOf(to.name) !== -1) {
+    next()
+   } else {
+     next('/login')
+   }
+  }
+})
+
+
+
+export default routers
