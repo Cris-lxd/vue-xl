@@ -58,7 +58,7 @@
             this.$message.success('登陆成功')
             console.log(this.$store.state, 'state')
             this.loginLoading = false
-            setLocaStorage('setUserInfo', data.data)
+            setLocaStorage('userInfo', data.data)
             setLocaStorage('token', data.data.token)
             this.$router.push('/')
           } else {

@@ -1,6 +1,7 @@
 <template>
   <div>
     我的个人信息
+    <div class="box"></div>
   </div>
 </template>
 
@@ -26,3 +27,11 @@ export default {
   methods: {}
 }
 </script>
+
+<style scoped>
+.box{
+  width: 100px;
+  height: 2000px;
+  background: red;
+}
+</style>

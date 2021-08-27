@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userinfo: JSON.parse(sessionStorage.getItem('setUserInfo'))
+    userinfo: JSON.parse(sessionStorage.getItem('userInfo'))
   },
   mutations: {
-    // setUserInfo(state, value) {
-    //   sessionStorage.setItem('setUserInfo', JSON.stringify(value))
+    // userInfo(state, value) {
+    //   sessionStorage.setItem('userInfo', JSON.stringify(value))
     // }
   },
 })

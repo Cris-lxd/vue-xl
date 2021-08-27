@@ -49,7 +49,13 @@ export default {
 
 <style scoped lang="less">
 .nav-bar-style {
+  margin-top: 54px;
   display: flex;
+  min-width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
   .header {
     flex: 1;
     width: 100%;
