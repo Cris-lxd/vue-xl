@@ -9,7 +9,8 @@ const api = axios.create({
   timeout: 100000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-  }
+  },
+  withCredentials: true
 })
 
 api.interceptors.request.use((request) => {
