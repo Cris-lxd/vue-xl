@@ -17,8 +17,7 @@ api.interceptors.request.use((request) => {
   console.log(request.headers, '111111')
   // request.headers.post['Content-Type'] = 'multipart/form-data'
   request.data = qs.stringify(request.data) // formData 传值需要转成后台所认知的有效数据
-  request.headers.Token = getStorage('token')
-  console.log(request.headers, '22222')
+  request.headers.Token = getStorage('token') // s
   return request
 }, (error) => {
   console.log(error, '请求错误')
