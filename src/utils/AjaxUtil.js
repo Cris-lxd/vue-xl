@@ -12,7 +12,7 @@ axios.interceptors.request.use(config => {
     iView.LoadingBar.start();     //开启iview进度条
     if(config.requireToken){
         let token = getStorage('token')
-        config.Token = token
+        config.headers.token = token
     }
     return config
 })

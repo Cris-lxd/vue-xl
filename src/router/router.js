@@ -10,7 +10,7 @@ const Regist = () => import('../views/login/regist.vue')
 const MyInfo = () => import('../views/content/myInfo/myInfo')
 const List = () => import('../views/content/List')
 const WarningInfo = () => import('../views/content/List/warningInfo')
-const notfound = () => import('../views/notfound')
+const notfound = () => import('../views/exception/notfound')
 
 
 Vue.prototype.$message = Message

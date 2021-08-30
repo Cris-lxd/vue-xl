@@ -85,13 +85,12 @@ export default {
       this.codeText = ''
       this.btnDisabled = true
       var num = 59
-      const params = {
-        phoneNumber: this.formInline.phoneNumber
-      }
-      this.$api.post(this.common.getVerifiedCode, params).then(({data}) => {
-        console.log(data, 'res')
-        if (data.code == 0) {
-          this.verificationCode = data.data
+      const params = new FormData();
+      params.append("phoneNumber",this.formInline.phoneNumber)
+      this.$ajax.post(this.common.getVerifiedCode, params,this,false).then((res) => {
+        console.log(res, 'res')
+        if (res.code == 0) {
+          this.verificationCode = res.data
         }
       })
       let time = setInterval(() => {
@@ -116,19 +115,18 @@ export default {
           this.loading = true
           this.btnLoading = true
           const { username, password, phoneNumber} = this.formInline
-          const params = {
-            username: username,
-            password: password,
-            phoneNumber: phoneNumber
-          }
-          this.$api.post(this.common.registry, params).then(({data}) => {
-            if (data.code == 0) {
-              this.$message.success(`${data.data}，即将跳转登陆页`)
+          const params = new FormData();
+          params.append("username",username);
+          params.append("password",password);
+          params.append("phoneNumber",phoneNumber);
+          this.$api.post(this.common.registry, params,this,false).then((res) => {
+            if (res.code == 0) {
+              this.$message.success(`${res.data}，即将跳转登陆页`)
               setTimeout(() => {
                 this.$router.push('/login')
               }, 2000)
             } else {
-              this.$message.error(data.data)
+              this.$message.error(res.data)
             }
           }).finally(() => {
             this.loading = false

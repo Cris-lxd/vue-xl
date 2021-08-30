@@ -50,39 +50,6 @@ module.exports = {
     open: true, // 启动项目自动弹出
     port: '8084',
     // proxy: 'http://49.234.96.50:8083',
-    /*proxy: {
-      'lala': {
-        target: proxyUrl, // 需要访问的真实地址
-        changeOrigin:true, // 开启代理
-        pathRewrite: {
-          'lala' : '' // 匹配上 /lxl 重写置空
-        }
-        // logLevel: 'debug',/
-      },
-      '^/api': {
-        target: proxyUrl,
-        changeOrigin:true,
-        // logLevel: 'debug',
-        pathRewrite: {
-          '^/api' : '' // 匹配上 /lxl 重写置空
-        }
-      },
-      'uat': {
-        target: proxyUrl,
-        changeOrigin:true,
-        pathRewrite: {
-          'uat' : 'lala' // 匹配上 /lxl 重写置空
-        }
-      },
-      'pre': {
-        target: proxyUrl,
-        changeOrigin:true,
-        // logLevel: 'debug',
-        pathRewrite: {
-          '^/pre' : '' // 匹配上 /lxl 重写置空
-        }
-      },
-    }, // 代理*/
     headers: {
       'Access-Control-Allow-Origin': '*' // 任何域都可访问
     }
