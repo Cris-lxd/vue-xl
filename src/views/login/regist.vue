@@ -147,7 +147,7 @@ export default {
 }
 </script>
 <style scoped lang="less">
-@import './login.less';
+@import '../../style/login/login.less';
 </style>
 <style scoped>
 .text-style{

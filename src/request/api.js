@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import { getStorage } from '@/utils'
+import { getStorage } from '@/utils/SessionUtil'
 
 
 
@@ -9,7 +9,8 @@ const api = axios.create({
   timeout: 100000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-  }
+  },
+  withCredentials:true
 })
 
 api.interceptors.request.use((request) => {

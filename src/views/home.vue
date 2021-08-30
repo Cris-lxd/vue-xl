@@ -24,9 +24,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import { removeStorage } from '@/utils'
+import { removeStorage } from '@/utils/SessionUtil'
 import navBar from './nav_bar.vue'
-import { getStorage } from '@/utils/index.js'
+import { getStorage } from '@/utils/SessionUtil.js'
 export default {
   components: {
     navBar

@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/router'
 import ElementUI from 'element-ui';
 import api from './request/api'
 import 'element-ui/lib/theme-chalk/index.css';
 import common from './request/common';
 import store from './store/index';
 import * as echarts from 'echarts';
+import ajax from './utils/AjaxUtil';
 Vue.use(ElementUI);
 // 引入 i-view UI组件
 
@@ -17,6 +18,7 @@ console.log(common, 'common')
 Vue.prototype.$api = api;
 Vue.prototype.$echarts = echarts
 Vue.prototype.common = common.common
+Vue.prototype.$ajax = ajax
 
 
 // Vue.config.productionTip = false

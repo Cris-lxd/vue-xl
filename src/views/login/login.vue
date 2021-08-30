@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-  import { setLocaStorage } from '@/utils'
+  import { setLocaStorage } from '@/utils/SessionUtil'
   export default {
     data () {
       return {
@@ -49,20 +49,38 @@
     methods: {
       handleSubmit() {
         this.loginLoading = true
-        const params = {
-          username: this.formInline.user,
-          password: this.formInline.password
-        }
-        this.$api.post(this.common.login, params).then(({ data }) => {
+        // const params = {
+        //   username: this.formInline.user,
+        //   password: this.formInline.password
+        // }
+        let params = new FormData();
+        params.append("username",this.formInline.user);
+        params.append("password",this.formInline.password);
+        /*this.$api.post(this.common.login, params).then(({ data }) => {
           if (data.code == 0) {
+
             this.$message.success('登陆成功')
-            console.log(this.$store.state, 'state')
+            // console.log(this.$store.state, 'state')
+            // console.log(data)
             this.loginLoading = false
             setLocaStorage('userInfo', data.data)
             setLocaStorage('token', data.data.token)
             this.$router.push('/')
           } else {
             this.$message.error(data.data)
+          }
+        }).finally(() => {
+          this.loginLoading = false
+        })*/
+        this.$ajax.post(this.common.login,params,this,false).then((res) => {
+          if(res.code == 0){
+            this.$message.success('登陆成功')
+            this.loginLoading = false
+            setLocaStorage('userInfo', res.data)
+            setLocaStorage('token', res.data.token)
+            this.$router.push('/')
+          }else{
+            this.$message.error(res.data)
           }
         }).finally(() => {
           this.loginLoading = false
@@ -78,7 +96,7 @@
   }
 </script>
 <style scoped lang="less">
-@import './login.less' ;
+@import '../../style/login/login.less';
 </style>
 <style scoped>
 .ivu-form-inline .ivu-form-item{

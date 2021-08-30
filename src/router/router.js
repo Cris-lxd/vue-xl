@@ -2,15 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import { Message } from 'element-ui';
-import { getStorage } from '@/utils'
+import { getStorage } from '../utils/SessionUtil'
 
-const Home = () => import('./views/home')
-const Login = () => import('./views/login/index')
-const Regist = () => import('./views/login/regist.vue')
-const MyInfo = () => import('./views/content/myInfo/index')
-const List = () => import('./views/content/List/index.vue')
-const WarningInfo = () => import('./views/content/List/warningInfo')
-const notfound = () => import('./views/notfound')
+const Home = () => import('../views/home')
+const Login = () => import('../views/login/login')
+const Regist = () => import('../views/login/regist.vue')
+const MyInfo = () => import('../views/content/myInfo/myInfo')
+const List = () => import('../views/content/List')
+const WarningInfo = () => import('../views/content/List/warningInfo')
+const notfound = () => import('../views/notfound')
 
 
 Vue.prototype.$message = Message
