@@ -37,8 +37,13 @@ function checkResponseStatus(response) {
                 message: "权限不足",
                 data: response.data
             }
+        case 401:
+            this.$router.push("login")
+            break;
+
         case 404:
             //未找到页面,跳转
+            this.$router.push("notfound")
             break;
         case 500:
             //服务器内部错误

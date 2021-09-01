@@ -78,7 +78,7 @@
             <div class="content-num">1,160</div>
             <div class="content-text">预警发现</div>
           </div> -->
-           <img src="@/assets/warninginfo/cameraImage.png">
+           <img src="@/assets/content/list//cameraImage.png">
            <div class="discover-tetx">
              <span>1,160</span>
              <p>预警发现</p>

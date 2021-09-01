@@ -8,8 +8,8 @@ const Home = () => import('../views/home')
 const Login = () => import('../views/login/login')
 const Regist = () => import('../views/login/regist.vue')
 const MyInfo = () => import('../views/content/myInfo/myInfo')
-const List = () => import('../views/content/List')
-const WarningInfo = () => import('../views/content/List/warningInfo')
+const List = () => import('../views/content/list')
+const WarningInfo = () => import('../views/content/list/warningInfo')
 const notfound = () => import('../views/exception/notfound')
 
 
