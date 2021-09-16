@@ -40,6 +40,6 @@ export default {
 .box{
   width: 100px;
   height: 2000px;
-  background: red;
+  background: teal;
 }
 </style>

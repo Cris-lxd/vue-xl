@@ -11,6 +11,7 @@ const MyInfo = () => import('../views/content/myInfo/myInfo')
 const List = () => import('../views/content/list')
 const WarningInfo = () => import('../views/content/list/warningInfo')
 const notfound = () => import('../views/exception/notfound')
+const changePwd = () => import('../views/login/changePwd')
 
 
 Vue.prototype.$message = Message
@@ -63,13 +64,19 @@ const routers = new Router({
       component: notfound
     },
     {
+      path: '/changePwd',
+      name: 'changePwd',
+      meta: '忘记密码',
+      component: changePwd
+    },
+    {
       path: '*',
       redirect: '/notfound'
     }
   ]
 })
 
-const notTokenPath = ['login', 'regist', 'notfound', 'warningInfo']
+const notTokenPath = ['login', 'regist', 'notfound', 'warningInfo','changePwd']
 
 routers.beforeEach((to, form, next) => {
   if(getStorage('token')) {

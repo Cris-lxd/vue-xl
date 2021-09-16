@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar-style">
-    <el-menu default-active="1-1" 
+    <el-menu default-active="1-1"
       background-color="#000" 
       text-color="#fff" 
       class="el-menu-vertical-demo"

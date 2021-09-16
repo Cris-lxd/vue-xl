@@ -13,6 +13,7 @@
               <Input type="password" v-model="formInline.password" placeholder="密码">
                   <Icon type="ios-lock-outline" slot="prepend"></Icon>
               </Input>
+              <a  @click="forgetPwd">忘记密码？</a>
           </FormItem>
           <FormItem>
               <div class="btn_style">
@@ -75,6 +76,12 @@
       },
       clear() {
         this.$refs.formInline.resetFields()
+      },
+      /**
+       * 忘记密码
+       */
+      forgetPwd(){
+        this.$router.push('changePwd');
       }
     }
   }

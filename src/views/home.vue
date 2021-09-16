@@ -2,7 +2,10 @@
   <div class="home_container">
       <div class="view-style" style="width:100%">
         <div class="header-style">
-          <span class="header-left">首页/{{pathName}}</span>
+          <span class="header-left">
+            <Button type="success" size="small" @click="closeMenu" id="closeMenu">收起</Button>
+            首页/{{pathName}}
+          </span>
           <div class="header-right">
             <!-- <p> userinfo: {{ userinfo }}</p> -->
               <Dropdown class="info-style">
@@ -16,8 +19,9 @@
               </Dropdown>
           </div>
         </div>
-        <navBar></navBar>
-        <div style="margin-left:200px;margin-top:54px"><router-view></router-view></div>
+        <navBar id="navBar"></navBar>
+        <div v-if="displayStatus == ''" style="margin-left: 200px;margin-top: 54px" class="content"><router-view></router-view></div>
+        <div v-if="displayStatus == 'none'" style="margin-left: 0px;margin-top: 54px" class="content"><router-view></router-view></div>
     </div>
   </div>
 </template>
@@ -34,7 +38,8 @@ export default {
   data() {
     return {
       userObj: this.$store.state,
-      pathName: '个人信息'
+      pathName: '个人信息',
+      displayStatus: '',
     }
   },
   computed: {
@@ -52,7 +57,10 @@ export default {
       console.log(news);
     }
   },
-  created() {
+  created() {},
+  mounted() {
+    let content = document.getElementById('content');
+    content.setAttribute('style','margin-left:200px;margin-top:54px !important')
   },
   methods: {
     logout() {
@@ -70,6 +78,25 @@ export default {
       setTimeout(() => {
         this.$router.push('/warningInfo')
       }, 0)
+    },
+
+    /**
+     * 菜单栏的展开收起
+     */
+    closeMenu(){
+      let element = document.getElementById('navBar');
+      let closeMenu = document.getElementById('closeMenu');
+      // let content = document.getElementById('content');
+      if(element.style.display == ""){
+        element.setAttribute('style', 'display: none !important');
+        closeMenu.innerHTML = '展开'
+      }else{
+
+        element.setAttribute('style', 'display: "" !important');
+        closeMenu.innerHTML = '收起'
+      }
+      this.displayStatus = element.style.display;
+
     }
   }
 }
@@ -114,6 +141,14 @@ export default {
           }
         }
       }
+    }
+    .box-style1{
+      margin-left:200px;
+      margin-top: 54px;
+    }
+    .box-style2{
+      margin-left: 0px;
+      margin-top: 54px;
     }
   }
 }
