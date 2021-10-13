@@ -2,7 +2,7 @@ import axios from 'axios'
 import iView from 'view-design'
 import { getStorage } from "./SessionUtil";
 
-const baseUrl = window.ApplicationConfig.baseUrl
+const baseUrl = '/api'
 
 /**
  * 请求前拦截
