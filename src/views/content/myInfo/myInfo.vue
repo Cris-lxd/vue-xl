@@ -1,5 +1,6 @@
 <template>
   <div>
+    <i class="iconfont icon-Rightbutton"></i>
     我的个人信息
     <div class="box"></div>
   </div>
@@ -13,23 +14,10 @@ export default {
     }
   },
   created() {
-    console.log(1)
-    // this.$api.post(this.common.test).then(({ data }) => {
-    //   console.log(data, 'data')
-    //   if (data.code == 0) {
-    //     this.$message.error('情况')
-    //   } else {
-    //     this.$message.error(data.message)
-    //   }
-    // }).finally(() => {
-    // })
     this.$ajax.post(this.common.test,null,this,true).then((res) => {
-      if(res.code == 0){
-        this.$message.info(res.data)
-      }else{
-        this.$message.error(res.data)
+      if(res.length){
+        this.$message.success('操作成功')
       }
-    }).finally(() => {
     })
   },
   methods: {}
@@ -38,8 +26,7 @@ export default {
 
 <style scoped>
 .box{
-  width: 100px;
-  height: 2000px;
-  background: teal;
+  height: 100%;
+  /* background: teal; */
 }
 </style>

@@ -38,7 +38,7 @@ module.exports = {
       entry: 'src/main.js',
       template: 'public/index.html',
       filename: 'index.html',
-      title: '大项目',
+      title: '后台管理系统',
     }
   },
   lintOnSave: 'error',
@@ -51,7 +51,7 @@ module.exports = {
     devtool: false, // 各个环境下能否看到源码
     // dev开发环境推荐：eval-cheap-module-source-map，inline-cheap-module-source-map
     // prod线上环境推荐：（none）不设置，nosources-source-map
-    externals: true ? cdn.externals : '' // 忽略第三方依赖包
+    externals: false ? cdn.externals : '' // 忽略第三方依赖包
   }, // 可以写 webpack 的配置
   chainWebpack: (config) => {
     // config.plugin('html').use(HtmlWebpackPlugin).tap(args => {

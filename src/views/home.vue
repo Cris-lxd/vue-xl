@@ -3,8 +3,8 @@
       <div class="view-style" style="width:100%">
         <div class="header-style">
           <span class="header-left">
-            <Button type="success" size="small" @click="closeMenu" id="closeMenu">收起</Button>
             首页/{{pathName}}
+            <span @click="flag = !flag" class="iconfont icon-Rightbutton icon"></span>
           </span>
           <div class="header-right">
             <!-- <p> userinfo: {{ userinfo }}</p> -->
@@ -19,9 +19,8 @@
               </Dropdown>
           </div>
         </div>
-        <navBar id="navBar"></navBar>
-        <div v-if="displayStatus == ''" style="margin-left: 200px;margin-top: 54px" class="content"><router-view></router-view></div>
-        <div v-if="displayStatus == 'none'" style="margin-left: 0px;margin-top: 54px" class="content"><router-view></router-view></div>
+        <navBar v-if="flag" id="navBar"></navBar>
+        <div :style="flag ? 'margin-left: 200px;' : ''" class="content"><router-view></router-view></div>
     </div>
   </div>
 </template>
@@ -37,6 +36,7 @@ export default {
   },
   data() {
     return {
+      flag: true,
       userObj: this.$store.state,
       pathName: '个人信息',
       displayStatus: '',
@@ -59,8 +59,8 @@ export default {
   },
   created() {},
   mounted() {
-    let content = document.getElementById('content');
-    content.setAttribute('style','margin-left:200px;margin-top:54px !important')
+    // let content = document.getElementById('content');
+    // content.setAttribute('style','margin-left:200px;margin-top:54px !important')
   },
   methods: {
     logout() {
@@ -83,21 +83,21 @@ export default {
     /**
      * 菜单栏的展开收起
      */
-    closeMenu(){
-      let element = document.getElementById('navBar');
-      let closeMenu = document.getElementById('closeMenu');
-      // let content = document.getElementById('content');
-      if(element.style.display == ""){
-        element.setAttribute('style', 'display: none !important');
-        closeMenu.innerHTML = '展开'
-      }else{
+    // closeMenu(){
+    //   let element = document.getElementById('navBar');
+    //   let closeMenu = document.getElementById('closeMenu');
+    //   // let content = document.getElementById('content');
+    //   if(element.style.display == ""){
+    //     element.setAttribute('style', 'display: none !important');
+    //     closeMenu.innerHTML = '展开'
+    //   }else{
 
-        element.setAttribute('style', 'display: "" !important');
-        closeMenu.innerHTML = '收起'
-      }
-      this.displayStatus = element.style.display;
+    //     element.setAttribute('style', 'display: "" !important');
+    //     closeMenu.innerHTML = '收起'
+    //   }
+    //   this.displayStatus = element.style.display;
 
-    }
+    // }
   }
 }
 </script>
@@ -119,9 +119,15 @@ export default {
       border-bottom: 1px solid #000;
       padding: 10px;
       display: table;
+      background: #000;
+      color: #fff;
       .header-left{
         float: left;
         line-height: 34px;
+        .icon{
+          font-size: 20px;
+          cursor: pointer;
+        }
       }
       .header-right{
         float: right;
@@ -141,6 +147,10 @@ export default {
           }
         }
       }
+    }
+    .content{
+      padding: 10px;
+      margin-top: 54px;
     }
     .box-style1{
       margin-left:200px;

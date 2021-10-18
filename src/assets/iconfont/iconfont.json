@@ -1,0 +1,16 @@
+{
+  "id": "2867042",
+  "name": "vue-xl",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11488132",
+      "name": "Right button",
+      "font_class": "Rightbutton",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    }
+  ]
+}

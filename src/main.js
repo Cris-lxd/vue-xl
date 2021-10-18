@@ -13,6 +13,8 @@ Vue.use(ElementUI);
 
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
+import '@/assets/iconfont/iconfont.css';
+
 Vue.use(ViewUI)
 console.log(common, 'common')
 Vue.prototype.$api = api;
