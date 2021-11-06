@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar-style">
-    <el-menu default-active="1-1"
+    <el-menu :default-active="defaultActive || '1-1'"
       background-color="#000" 
       text-color="#fff" 
       class="el-menu-vertical-demo"
@@ -15,9 +15,11 @@
 </template>
 
 <script>
+import { setLocaStorage, getStorage } from '@/utils/SessionUtil.js'
 export default {
   data() {
     return {
+      defaultActive: '1-1',
       menuList: [
         {
           title: "目录",
@@ -38,10 +40,27 @@ export default {
       ],
     };
   },
+  // watch: {
+  //   $route:{
+  //     handler(newV, oldV) {
+  //       console.log(newV, 'newV', oldV)
+  //     },
+  //     deep: true
+  //   }
+  // },
+  mounted() {
+    console.log(getStorage('path'), 'getStorage')
+    if (getStorage('path') && getStorage('path').name){
+      this.defaultActive = getStorage('path').name
+    }
+  },
   methods: {
     onSelect() {},
     handleMenu(it, chit) {
-      this.$router.push(`/${chit.path}`)
+      if (chit.path === getStorage('path').path) return
+      const { path } = chit
+      setLocaStorage('path', chit)
+      this.$router.push(`/${path}`)
     }
   },
 };

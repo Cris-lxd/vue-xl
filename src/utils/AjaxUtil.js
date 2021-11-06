@@ -1,8 +1,7 @@
 import axios from 'axios'
 import iView from 'view-design'
+import configer from '@/settings'
 import { getStorage } from "./SessionUtil";
-
-const baseUrl = '/api'
 
 /**
  * 请求前拦截
@@ -87,10 +86,11 @@ export default {
      * @returns {*}
      */
     post(url,data,vue,requireToken){
+        console.log(configer.env, '哈哈哈')
         return axios({
             method : 'post',
             url : url,
-            baseURL : baseUrl,
+            baseURL : configer.baseURL,
             cache : false,
             data : data,
             timeout : 100000,
@@ -113,10 +113,11 @@ export default {
      * @returns {*}
      */
     get(url,params,vue,requireToken){
+        console.log(configer.baseURL, '哈哈哈')
         return axios({
             method: 'get',
             url: url,
-            baseURL: baseUrl,
+            baseURL: configer.baseURL,
             params: params,
             timeout: 30000,
             vue: vue,

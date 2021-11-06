@@ -65,20 +65,20 @@ module.exports = {
     // extract: true,
     sourceMap: false, // 准确无误告诉 css 样式在哪里
   },
-  devServer: {
-    open: true, // 启动项目自动弹出
-    port: '8080',
-    proxy: {
-      '/api': {
-        target: 'http://49.234.96.50:8083',
-        changeOrigin: true, // 为 true 此时url变为 http://49.234.96.50:8083/api/接口地址，需配合重写路径去除
-        pathRewrite: { // 匹配到 /api的 重写
-          '^/api': ''
-        }
-      }
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*' // 任何域都可访问
-    }
-  },
+  // devServer: {
+  //   open: true, // 启动项目自动弹出
+  //   port: '8080',
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://49.234.96.50:8083',
+  //       changeOrigin: true, // 为 true 此时url变为 http://49.234.96.50:8083/api/接口地址，需配合重写路径去除
+  //       pathRewrite: { // 匹配到 /api的 重写
+  //         '^/api': ''
+  //       }
+  //     }
+  //   },
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*' // 任何域都可访问
+  //   }
+  // },
 }

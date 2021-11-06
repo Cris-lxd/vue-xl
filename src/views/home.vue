@@ -3,8 +3,8 @@
       <div class="view-style" style="width:100%">
         <div class="header-style">
           <span class="header-left">
+            <span @click="flag = !flag" class="iconfont icon-align-right icon"></span>
             首页/{{pathName}}
-            <span @click="flag = !flag" class="iconfont icon-Rightbutton icon"></span>
           </span>
           <div class="header-right">
             <!-- <p> userinfo: {{ userinfo }}</p> -->
@@ -127,6 +127,7 @@ export default {
         .icon{
           font-size: 20px;
           cursor: pointer;
+          padding-right: 10px;
         }
       }
       .header-right{

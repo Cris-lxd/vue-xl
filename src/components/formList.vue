@@ -1,6 +1,6 @@
 <template>
   <div class="form-list-wrap">
-    <el-table v-loading="loading" :data="tableData" border style="width: 100%" height="1000px">
+    <el-table v-loading="loading" :data="tableData" border style="width: 100%">
       <el-table-column prop="flowName" label="模板名称"></el-table-column>
       <el-table-column prop="flowModelNo" label="模板编码"></el-table-column>
       <el-table-column prop="systemName" label="系统名称"></el-table-column>
@@ -108,6 +108,7 @@
 
 <style lang="less" scoped>
 .form-list-wrap {
+  height: calc(100% - 40px);
   padding-bottom: 20px;
   /deep/.el-table {
     margin-bottom: 20px;
