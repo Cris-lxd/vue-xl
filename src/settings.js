@@ -14,9 +14,12 @@ const envConfig = {
 
 const configer = {}
 
-if (process.env.NODE_ENV === "development") {
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "developent") {
   Object.assign(configer, envConfig.dev)
 } else if (process.env.NODE_ENV === "uat") {
+  Object.assign(configer, envConfig.uat)
+} else {
   Object.assign(configer, envConfig.uat)
 }
 
