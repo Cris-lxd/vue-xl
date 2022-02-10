@@ -86,6 +86,7 @@ export default {
      * @returns {*}
      */
     post(url,data,vue,requireToken){
+        console.log(configer)
         console.log(configer.env, '哈哈哈')
         return axios({
             method : 'post',

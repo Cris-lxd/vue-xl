@@ -6,66 +6,74 @@
         <div>
           <Row>
             <Col span="7">
-              预警时间：
+              年份选择：
             </Col>
             <Col span="17">
-              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="2020" style="width: 200px"></DatePicker>
             </Col>
           </Row>
         </div>
         <div class="search-item">
           <Row>
             <Col span="10">
-              预警时间确认时间段：
+              农场投入区间：
             </Col>
             <Col span="14">
-              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+<!--              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>-->
+              <Select v-model="model1" style="width:200px" placeholder="100,000">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value" >{{ item.label }}</Option>
+              </Select>
+
             </Col>
           </Row>
         </div>
         <div class="search-item">
           <Row>
             <Col span="24">
-              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+              —— &nbsp;&nbsp;
+<!--              <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>-->
+              <Select v-model="model1" style="width:200px" placeholder="2,000,000">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value" >{{ item.label }}</Option>
+              </Select>
             </Col>
           </Row>
         </div>
         <div class="search-item">
           <Row>
             <Col span="7">
-              预警级别：
+              开垦程度：
             </Col>
             <Col span="17">
-              <Select v-model="model1" style="width:200px" placeholder="Select level">
+              <Select v-model="model1" style="width:200px" placeholder="初步开垦">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value" >{{ item.label }}</Option>
               </Select>
             </Col>
           </Row>
         </div>
 <!--      单选-->
-        <div style="padding-left:30px">
-            <span>是否分发：</span>
-              <RadioGroup v-model="type">
-                <Radio label="是"></Radio>
-                <Radio label="否"></Radio>
-              </RadioGroup>
-        </div>
-        <div style="padding-left:30px">
-          <span>是否无效预警：</span>
-          <RadioGroup v-model="type1">
-            <Radio label="是"></Radio>
-            <Radio label="否"></Radio>
-          </RadioGroup>
-        </div>
+<!--        <div style="padding-left:30px">-->
+<!--            <span>是否分发：</span>-->
+<!--              <RadioGroup v-model="type">-->
+<!--                <Radio label="是"></Radio>-->
+<!--                <Radio label="否"></Radio>-->
+<!--              </RadioGroup>-->
+<!--        </div>-->
+<!--        <div style="padding-left:30px">-->
+<!--          <span>是否无效预警：</span>-->
+<!--          <RadioGroup v-model="type1">-->
+<!--            <Radio label="是"></Radio>-->
+<!--            <Radio label="否"></Radio>-->
+<!--          </RadioGroup>-->
+<!--        </div>-->
 <!--      查询按钮-->
         <div class="search-item">
           <Button type="primary">查询</Button>
         </div>
       </div>
-      <div class="head-menu">
-        <Icon type="ios-sad-outline" size="30" style="float:right"/>
-        <Icon type="ios-sad-outline" size="30"  style="float:right"/>
-      </div>
+<!--      <div class="head-menu">-->
+<!--        <Icon type="ios-sad-outline" size="30" style="float:right"/>-->
+<!--        <Icon type="ios-sad-outline" size="30"  style="float:right"/>-->
+<!--      </div>-->
     </div>
 
 
@@ -81,17 +89,17 @@
            <img src="@/assets/content/list//cameraImage.png">
            <div class="discover-tetx">
              <span>1,160</span>
-             <p>预警发现</p>
+             <p>已监测农田(亩)</p>
            </div>
         </div>
         <div class="distributed">
           <div class="distributed-item">
-            <span class="distributed-num">1,160</span>
-            <p class="distributed-text">已核查</p>
+            <span class="distributed-num">1,130</span>
+            <p class="distributed-text">已开垦</p>
           </div>
           <div class="distributed-item">
-            <span class="distributed-num">1,160</span>
-            <p class="distributed-text">已核查</p>
+            <span class="distributed-num">30</span>
+            <p class="distributed-text">未开垦</p>
           </div>
         </div>
       </div>
@@ -104,12 +112,12 @@
       </div> -->
       <div class="data-item" v-for="(item, index) in 25" :key="index">
         <!-- <div class="item-image"></div> -->
-          <img class="item-image" src="@/assets/logo.png" alt="">
+          <img class="item-image" :src="getImgUrl(item)" alt="">
           <div>
-            <p class="item-content"><span>预警类别： 违法建房</span></p>
-            <p class="item-content">预警时间： 2020年12月16日 12:20</p>
+            <p class="item-content"><span>农田名称：{{ item}}号农田 </span></p>
+            <p class="item-content">开垦时间： 2020年12月{{item}}日</p>
             <div class="is-text">
-              <span class="item-content">是否分发： 是</span>
+              <span class="item-content">是否开垦： 是</span>
               <span class="item-content">是否核查： 否</span>
             </div>
           </div>
@@ -117,7 +125,7 @@
           <div class="item-content">预警时间： 2020年12月16日 12:20</div>
           <div class="item-content">是否分类： 是</div> -->
         <div class="item-detail">
-          <Button :size="buttonSize" type="primary">按钮</Button>
+          <Button :size="buttonSize" type="primary">详细查看</Button>
         </div>
       </div>
     </div>
@@ -145,6 +153,10 @@ export default {
         },
       ],
       pieOptions: { // initPieChart 方法使用 options
+        title: {
+          text: '农田类型占比',
+          left: 'center'
+        },
         tooltip: {
           trigger: 'item'
         },
@@ -167,11 +179,11 @@ export default {
               show: false
             },
             data: [
-              {value: 1048, name: '类型一'},
-              {value: 735, name: '类型二'},
-              {value: 580, name: '类型三'},
-              {value: 484, name: '类型四'},
-              {value: 300, name: '类型五'}
+              {value: 1048, name: '平坝田'},
+              {value: 735, name: '水浇地'},
+              {value: 580, name: '旱地'},
+              {value: 484, name: '水田'},
+              {value: 300, name: '条田'}
             ],
             emphasis: {
               itemStyle: {
@@ -184,6 +196,11 @@ export default {
         ]
       },
       barOpptions: { // initBarChart 方法使用 options
+        title: {
+          text: '2020年农田产值',
+          subtext: '(万元)',
+          left: 'center'
+        },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -221,8 +238,8 @@ export default {
             type: 'value',
             // name: '水量',
             min: 0,
-            max: 250,
-            interval: 50,
+            max: 150,
+            interval: 30,
             // axisLabel: {
             //   formatter: '{value} ml'
             // }
@@ -232,14 +249,14 @@ export default {
           {
             name: '蒸发量',
             type: 'bar',
-            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+            data: [23,42,45,67,78,76,105,124,103,85,45,31]
           },
 
           {
-            name: '平均温度',
+            name: '变化率',
             type: 'line',
             yAxisIndex: 0,
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            data: [23,42,45,67,78,76,105,124,103,85,45,31]
           }
         ]
       },
@@ -257,11 +274,18 @@ export default {
   },
   methods: {
     initPieChart(){
-      this.$echarts.init(document.getElementById('pieChart')).setOption(this.pieOptions)
+      let myChart1 = this.$echarts.init(document.getElementById('pieChart'));
+      myChart1.setOption(this.pieOptions);
+      window.onresize = myChart1.resize;
     },
 
     initBarChart(){
-      this.$echarts.init(document.getElementById('barChart')).setOption(this.barOpptions)
+      let myChart = this.$echarts.init(document.getElementById('barChart'));
+      myChart.setOption(this.barOpptions);
+      window.onresize = myChart.resize;
+    },
+    getImgUrl(item){
+      return require("@/assets/content/list/"+item+".jpeg");
     }
 
   }
@@ -280,31 +304,31 @@ export default {
     align-items: center;
     //justify-content: center;
     .head-search{
-      height:80%;
-      width:85%;
-      padding-left:10px;
-      line-height:80px;       //设置字体居中
+      height:85%;
+      width:100%;
+      padding-left:45px;
+      line-height:51px;       //设置字体居中
       display: flex;
       //justify-content: center;
       align-items: center;
       font-family: 微软雅黑;
       font-weight: bold;
         .search-item{
-          padding-left: 20px;     //设置条件框中间位置
+          padding-left: 45px;     //设置条件框中间位置
         }
     }
-    .head-menu{
-      flex: 1;
-      text-align:right;
-      height:80%;
-      display: flex;
-      //justify-content: center;
-      margin-left:30px;
-      align-items: center;
-      //background-color: #ffbb96;
-      padding-left:10%;
-
-    }
+    //.head-menu{
+    //  flex: 1;
+    //  text-align:right;
+    //  height:80%;
+    //  display: flex;
+    //  //justify-content: center;
+    //  margin-left:30px;
+    //  align-items: center;
+    //  //background-color: #ffbb96;
+    //  padding-left:10%;
+    //
+    //}
   }
 
   .isView{
@@ -405,10 +429,13 @@ export default {
       }
       .item-image{
         width:90%;
-        height:45%;
-        background-color: #72a755;
+        height:60%;
+        //background-color: #72a755;
         margin-top: 5%;
         margin-left:5%;
+        //background-size: contain;
+        //background-position: center center;
+        object-fit: contain;
       }
       .item-content{
         width:90%;

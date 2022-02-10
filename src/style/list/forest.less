@@ -1,0 +1,111 @@
+.foster_container{
+  width:100%;
+  height:500px;
+  display: flex;
+  flex-direction: column;
+  .foster_head{
+    height:80px;
+    width: 100%;
+    .head_top{
+      height:30px;
+      background-color: black;
+      width: 100%;
+    }
+    .head_bottom{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 50px;
+      width: 100%;
+      .bottom_left{
+        height: 50px;
+        flex-grow: 1;
+        .left_icon{
+          height: 40px;
+          width: 60%;
+          background-color: black;
+          float:right;
+          text-align: center;
+          line-height: 40px;
+          color: white;
+          font-size: 30px;
+          font-weight: bold;
+          font-family: "Noto Sans Cham";
+        }
+      }
+      .bottom_center{
+        height: 50px;
+        flex-grow: 7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .center_item{
+          height: 32px;
+          width:120px;
+          margin-left: 2px;
+          border: 1px solid black;
+          text-align: center;
+          line-height: 32px;
+          font-size: 20px;
+          color: black;
+          cursor: pointer;
+          transition: border 300ms;
+        }
+        .center_item:hover{
+          border: 1px none white;
+        }
+        .option_item{
+          height: 40px;
+          width:120px;
+          margin-left: 2px;
+          border-bottom: 1px solid black;
+          transition: border-bottom 300ms;
+          text-align: center;
+          line-height: 40px;
+          font-size: 17px;
+          color: black;
+          cursor: pointer;
+        }
+        .option_item:hover{
+          border-bottom: 1px solid red;
+        }
+      }
+      .bottom_right{
+        height: 50px;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .right_text{
+          width:20px;
+          height:20px;
+          border: 1px solid black;
+          border-radius: 50%;
+          font-size:15px;
+          margin-left: 8px;
+          text-align: center;
+          line-height: 20px;
+          //background-color: white;
+          //color:black;
+          transition: background-color 300ms,color 300ms;
+        }
+        .right_text:hover{
+          color: white;
+          background-color: black;
+        }
+      }
+    }
+  }
+  .foster_body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .body_first{
+      width: 100%;
+      height: 500px;
+    }
+  }
+  .foster_foot{
+
+  }
+}

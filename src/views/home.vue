@@ -15,12 +15,13 @@
                   <DropdownItem @click.native="alertinfo">个人信息</DropdownItem>
                   <DropdownItem @click.native="logout">退出登陆</DropdownItem>
                   <DropdownItem @click.native="warning">预警信息</DropdownItem>
+                  <DropdownItem @click.native="forest">元气森林</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
           </div>
         </div>
         <navBar v-if="flag" id="navBar"></navBar>
-        <div :style="flag ? 'margin-left: 200px;' : ''" class="content"><router-view></router-view></div>
+        <div :style="flag ? 'margin-left: 200px; transition: all 1s' : ''" class="content"><router-view></router-view></div>
     </div>
   </div>
 </template>
@@ -79,6 +80,11 @@ export default {
         this.$router.push('/warningInfo')
       }, 0)
     },
+    forest(){
+      setTimeout(() => {
+        this.$router.push('/forest')
+      },0)
+    }
 
     /**
      * 菜单栏的展开收起
