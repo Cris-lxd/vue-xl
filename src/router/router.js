@@ -12,7 +12,7 @@ const List = () => import('../views/content/list')
 const WarningInfo = () => import('../views/content/list/warningInfo')
 const notfound = () => import('../views/exception/notfound')
 const changePwd = () => import('../views/login/changePwd')
-const forest = () => import('../views/content/list/yqforest')
+const forest = () => import('../views/content/list/yqForest')
 
 
 Vue.prototype.$message = Message
