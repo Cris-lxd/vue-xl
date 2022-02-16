@@ -3,11 +3,9 @@
       <div class="view-style" style="width:100%">
         <div class="header-style">
           <span class="header-left">
-            <span @click="flag = !flag" class="iconfont icon-align-right icon"></span>
-            首页/{{pathName}}
+            首页 / {{pathName}}
           </span>
           <div class="header-right">
-            <!-- <p> userinfo: {{ userinfo }}</p> -->
               <Dropdown class="info-style">
                 <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
                 <span v-if="userinfo" class="login-name" size="large">{{userinfo.user.username}}</span>
@@ -20,8 +18,10 @@
               </Dropdown>
           </div>
         </div>
-        <navBar v-if="flag" id="navBar"></navBar>
-        <div :style="flag ? 'margin-left: 200px; transition: all 1s' : ''" class="content"><router-view></router-view></div>
+        <navBar id="navBar" @handleCollapse="handleCollapse"></navBar>
+        <div :class="[isCollapse ? 'mar-64':'mar-200', 'content-container']">
+          <router-view></router-view>
+        </div>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      flag: true,
+      isCollapse: true,
       userObj: this.$store.state,
       pathName: '个人信息',
       displayStatus: '',
@@ -60,10 +60,11 @@ export default {
   },
   created() {},
   mounted() {
-    // let content = document.getElementById('content');
-    // content.setAttribute('style','margin-left:200px;margin-top:54px !important')
   },
   methods: {
+    handleCollapse(state) {
+      this.isCollapse = state
+    },
     logout() {
       this.$message.success("即将退出登陆")
       removeStorage('userInfo')
@@ -85,25 +86,6 @@ export default {
         this.$router.push('/forest')
       },0)
     }
-
-    /**
-     * 菜单栏的展开收起
-     */
-    // closeMenu(){
-    //   let element = document.getElementById('navBar');
-    //   let closeMenu = document.getElementById('closeMenu');
-    //   // let content = document.getElementById('content');
-    //   if(element.style.display == ""){
-    //     element.setAttribute('style', 'display: none !important');
-    //     closeMenu.innerHTML = '展开'
-    //   }else{
-
-    //     element.setAttribute('style', 'display: "" !important');
-    //     closeMenu.innerHTML = '收起'
-    //   }
-    //   this.displayStatus = element.style.display;
-
-    // }
   }
 }
 </script>
@@ -120,23 +102,22 @@ export default {
       right: 0;
       width: 100%;
       width: 100%;
-      height: 49px;
       background-color: #fff;
       border-bottom: 1px solid #000;
-      padding: 10px;
-      display: table;
+      padding: 10px 20px;
       background: #000;
       color: #fff;
+      display: flex;
+      justify-content: space-between;
       .header-left{
+        display: flex;
+        align-items: center;
         float: left;
+        cursor: pointer;
         line-height: 34px;
-        .icon{
-          font-size: 20px;
-          cursor: pointer;
-          padding-right: 10px;
-        }
       }
       .header-right{
+        line-height: 35px;
         float: right;
         .info-style{
           display: flex;
@@ -155,9 +136,16 @@ export default {
         }
       }
     }
-    .content{
+    .content-container{
       padding: 10px;
       margin-top: 54px;
+      transition: all 1s;
+      &.mar-200{
+        margin-left: 200px;
+      }
+      &.mar-64{
+        margin-left: 64px;
+      }
     }
     .box-style1{
       margin-left:200px;

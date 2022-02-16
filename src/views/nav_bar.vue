@@ -1,14 +1,28 @@
 <template>
   <div class="nav-bar-style">
     <el-menu :default-active="defaultActive || '1-1'"
-      background-color="#000" 
-      text-color="#fff" 
       class="el-menu-vertical-demo"
-      :unique-opened="true"
+      :collapse="isCollapse"
       @select="onSelect">
-      <el-submenu v-for="(item) in menuList" :key="item.name" :index="item.name">
-        <span slot="title">{{item.title}}</span>
-        <el-menu-item  v-for="(childItem) in item.child" @click="handleMenu(item, childItem)" :key="childItem.name" :index="childItem.name">{{childItem.title}}</el-menu-item>
+      <i @click="handleCollapse" :class="[isCollapse ? 'icon-unwind' : 'icon-up', 'iconfont icon-zhankai icon']"></i>
+      <el-submenu 
+        v-for="(item) in menuList" 
+        :key="item.name" 
+        :index="item.name"
+      >
+        <template slot="title">
+          <i class="iconfont icon" :class="item.icon"></i>
+          <span slot="title">{{item.title}}</span>
+        </template>
+        <el-menu-item
+          class="my-el-menu-item"
+          v-for="(childItem) in item.child" 
+          @click="handleMenu(item, childItem)" 
+          :key="childItem.name" 
+          :index="childItem.name"
+        >
+          {{childItem.title}}
+        </el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -19,45 +33,74 @@ import { setLocaStorage, getStorage } from '@/utils/SessionUtil.js'
 export default {
   data() {
     return {
+      isCollapse: true,
       defaultActive: '1-1',
       menuList: [
         {
-          title: "目录",
+          id: 1,
+          title: "主界面",
           name: '1',
+          icon: 'icon-zhuye',
           child: [
             {
+              id: 1.1,
               name: "1-1",
               title: "个人信息",
               path: "myInfo",
+              icon: 'icon-gerenxinxi',
             },
             {
+              id: 1.2,
               name: "1-2",
-              title: "自定义页面",
+              title: "列表页面",
               path: "list",
+              icon: 'icon-gerenxinxi',
+            },
+            // {
+            //   name: "1-3",
+            //   title: "元气森林",
+            //   path: "forest",
+            // },
+          ],
+        },
+        {
+          id: 2,
+          title: "设置",
+          name: '2',
+          icon: 'icon-shezhi',
+          child: [
+            {
+              id: 2.1,
+              name: "2-1",
+              title: "个人信息",
+              path: "myInfo",
+              icon: 'icon-gerenxinxi',
+            },
+            {
+              id: 2.2,
+              name: "2-2",
+              title: "列表页面",
+              path: "list",
+              icon: 'icon-liebiao',
             },
           ],
-        }
+        },
       ],
     };
   },
-  // watch: {
-  //   $route:{
-  //     handler(newV, oldV) {
-  //       console.log(newV, 'newV', oldV)
-  //     },
-  //     deep: true
-  //   }
-  // },
   mounted() {
-    console.log(getStorage('path'), 'getStorage')
     if (getStorage('path') && getStorage('path').name){
       this.defaultActive = getStorage('path').name
     }
   },
   methods: {
+    handleCollapse() {
+      this.isCollapse = !this.isCollapse
+      this.$emit('handleCollapse', this.isCollapse)
+    },
     onSelect() {},
     handleMenu(it, chit) {
-      if (chit.path === getStorage('path').path) return
+      if (chit.path === getStorage('path').path || '') return
       const { path } = chit
       setLocaStorage('path', chit)
       this.$router.push(`/${path}`)
@@ -70,23 +113,56 @@ export default {
 .nav-bar-style {
   margin-top: 54px;
   display: flex;
+  flex-direction: column;
   min-width: 200px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  .header {
-    flex: 1;
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid #000;
+  .icon{
+    color:#333;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    &.icon-unwind{
+      justify-content: center;
+    }
+    &.icon-up{
+      padding-right: 16px;
+      justify-content: flex-end;
+    }
+  }
+  span{
+    padding-left: 10px;
+  }
+  .el-menu-vertical-demo {
+    padding-top: 10px;
+    height: 100%;
+  }
+  /deep/ .el-submenu__title{
+    display: flex;
+    align-items: center;
+    &:hover{
+      background-color: green !important;
+    }
+  }
+  /deep/.my-el-menu-item{
+    &.is-active{
+      color: #333;
+      background-color: green !important;
+    }
+    &:hover{
+      background-color: green !important;
+    }
   }
 }
 </style>
-<style>
+<style lang="less">
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
     overflow: hidden;
+    background-color: #fff;
   }
 </style>
