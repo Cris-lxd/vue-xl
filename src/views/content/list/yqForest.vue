@@ -19,13 +19,17 @@
         </div>
       </div>
       <div class="bottom_right">
-        <div class="right_text">中</div>
-        <div class="right_text">繁</div>
+        <div class="right_text" style="cursor: pointer" ref="language"  @click="changeBg(1)">中</div>
+        <div class="right_text" style="cursor: pointer" ref="form" @click="changeBg(2)">繁</div>
       </div>
     </div>
   </div>
   <div class="foster_body">
     <div class="body_first">
+      <div class="image_index">
+        <span class="index_text" ref="one"></span>
+        <span class="index_text" ref="two"></span>
+      </div>
 <!--      <img src="../../../assets/content/list/yqsl.jpg" style="width: 100%; height: 100%"/>-->
       <Carousel autoplay v-model="value1" loop dots="none" arrow="never" @on-change="getindex">
         <CarouselItem>
@@ -41,13 +45,85 @@
     <div class="body_second">
       <div class="second_content">
         <div class="content_page">
-<!--          <img src="../../../assets/login/farm.jpg" style="width: 100%;"/>-->
+          <img src="../../../assets/login/farm.jpg" style="width: 100%; height: 100%"/>
         </div>
-        <div class="content_page"></div>
+        <div class="content_page">
+          <span class="title">年轻团队创造年轻人的产品</span>
+          <span class="sign"></span>
+          <span class="brief">有意思生活方式大会在北京举行</span>
+          <span class="content">9月11日，尤以撒发发空腹喝酒啊快来发哈咖啡黑科技啊发哈就看过哈开机后公交卡和公交卡很干净啊计发手机客服哈划开工</span>
+          <input type="button" class="detail" value="查看详情"/>
+        </div>
       </div>
-      <div class="second_content"></div>
-      <div class="second_content"></div>
+      <div class="second_content">
+        <div class="content_page">
+          <img src="../../../assets/login/JhsFuNuNOkQ.jpg" style="width: 100%; height: 100%"/>
+        </div>
+        <div class="content_page">
+          <span class="title">年轻团队创造年轻人的产品</span>
+          <span class="sign"></span>
+          <span class="brief">有意思生活方式大会在北京举行</span>
+          <span class="content">9月11日，尤以撒发发空腹喝酒啊快来发哈咖啡黑科技啊发哈就看过哈开机后公交卡和公交卡很干净啊计发手机客服哈划开工</span>
+          <input type="button" class="detail" value="查看详情" @click="test"/>
+        </div>
+      </div>
+      <div class="second_content">
+        <div class="content_page">
+          <img src="../../../assets/login/rocketlaunch.jpg" style="width: 100%; height: 100%"/>
+        </div>
+        <div class="content_page">
+          <span class="title">年轻团队创造年轻人的产品</span>
+          <span class="sign"></span>
+          <span class="brief">有意思生活方式大会在北京举行</span>
+          <span class="content">9月11日，尤以撒发发空腹喝酒啊快来发哈咖啡黑科技啊发哈就看过哈开机后公交卡和公交卡很干净啊计发手机客服哈划开工</span>
+          <input type="button" class="detail" value="查看详情"/>
+        </div>
+      </div>
     </div>
+    <div class="body_third">
+      <span class="title">新闻资讯</span>
+      <span class="sign"></span>
+      <span class="news">
+        <div class="news_details">
+          <span class="img"><img src="../../../assets/content/list/yqsl.jpg"  style="width: 100%; height: 246px"/></span>
+          <span class="details_title">元气新青年出征告捷</span>
+          <span class="details_date">2022-02-17</span>
+          <span class="details_content">于2022年11月28日，元气森林产品发布会在中国广东省深圳市举行，届时元气森林CEO将出席本次庆典</span>
+        </div>
+        <div class="news_details">
+          <span class="img"><img src="../../../assets/content/list/yqsl.jpg"  style="width: 100%; height: 246px"/></span>
+          <span class="details_title">元气新青年出征告捷</span>
+          <span class="details_date">2022-02-17</span>
+          <span class="details_content">于2022年11月28日，元气森林产品发布会在中国广东省深圳市举行，届时元气森林CEO将出席本次庆典</span>
+        </div>
+        <div class="news_details">
+          <span class="img"><img src="../../../assets/content/list/yqsl.jpg"  style="width: 100%; height: 246px"/></span>
+          <span class="details_title">元气新青年出征告捷</span>
+          <span class="details_date">2022-02-17</span>
+          <span class="details_content">于2022年11月28日，元气森林产品发布会在中国广东省深圳市举行，届时元气森林CEO将出席本次庆典</span>
+        </div>
+      </span>
+      <span class="detail">了解详情</span>
+    </div>
+    <div class="body_logo">
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+      <span class="logo2">敬请期待</span>
+    </div>
+  </div>
+  <div class="foster_foot">
+    <div class="foot_right">京ICP备：983401412341-4号</div>
   </div>
 </div>
 </template>
@@ -58,14 +134,59 @@ export default {
   name: "yqforest",
   data () {
     return {
-      value1: 0,
+      value1: 0,    //代表幻灯片从1开始
       indexOfImg: 0,
-      menuList: window.ApplicationConfig.menuList
+      menuList: window.ApplicationConfig.menuList,
+      languageColor: "white",
+      formColor: "white",
     }
+  },
+  created() {
+
+  },
+  mounted() {
+    this.getindex(1)
   },
   methods:{
     getindex(data){
-      this.indexOfImg = data;
+      if(data == 0 || data == "" || data == null){
+        this.$refs.one.style.width = "20px"
+        this.$refs.one.style.borderTop = "1px solid red";
+        this.$refs.two.style.width = "13px"
+        this.$refs.two.style.borderTop = "1px solid #808080";
+      }
+      if(data == 1){
+        this.$refs.two.style.width = "20px"
+        this.$refs.two.style.borderTop = "1px solid red";
+        this.$refs.one.style.width = "13px"
+        this.$refs.one.style.borderTop = "1px solid #808080";
+      }
+    },
+    test(){
+      alert("fafa")
+    },
+    changeBg(sign){
+        if(sign == 1){
+          if(this.languageColor == "white"){
+            this.$refs.language.style.backgroundColor = "black"
+            this.$refs.language.style.color = "white"
+            this.languageColor = "black"
+          }else{
+            this.$refs.language.style.backgroundColor = "white"
+            this.$refs.language.style.color = "black"
+            this.languageColor = "white"
+          }
+        }if(sign == 2){
+          if(this.formColor == "white"){
+            this.$refs.form.style.backgroundColor = "black"
+            this.$refs.form.style.color = "white"
+            this.formColor = "black"
+          }else{
+            this.$refs.form.style.backgroundColor = "white"
+            this.$refs.form.style.color = "black"
+            this.formColor = "white"
+          }
+      }
     }
   }
 }

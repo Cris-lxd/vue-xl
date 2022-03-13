@@ -2,9 +2,9 @@
   margin: 0 auto;
   min-width: 1280px;
   width:100%;
-  height:500px;
   display: flex;
   flex-direction: column;
+  //position: relative;
   .foster_head{
     height:80px;
     width: 100%;
@@ -87,6 +87,8 @@
           margin-left: 8px;
           text-align: center;
           line-height: 20px;
+          background-color: white;
+          color: black;
           //background-color: white;
           //color:black;
           transition: background-color 300ms,color 300ms;
@@ -102,10 +104,30 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     .body_first{
       width: 100%;
       height: 800px;
+      position: relative;
     }
+      .image_index{
+        position: absolute;
+        width:30px;
+        height: 30px;
+        top:380px;
+        left:100px;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+
+        .index_text{
+          flex: 1;
+          width:13px;
+          height: 1px;
+          border-top: 1px solid #808080;
+        }
+      }
+
     .body_second{
       width: 100%;
       //height:2000px;
@@ -116,27 +138,238 @@
       margin-top: 30px;
       padding-left: 150px;
       .second_content{
-        border: 1px solid red;
-        width:80%;
-        height:400px;
-        //flex-grow: 1;
+        width:90%;
+        height:600px;
         margin-top: 70px;
-        //margin-left: 10%;
         display: flex;
         .content_page{
-          &:last-child{             /**伪元素，适用于多对象中的个别对象**/
-            margin-left: 10px;
-          }
+          //&:last-child{             /**伪元素，适用于多对象中的个别对象**/
+          //  margin-left: 10px;
+          //}
           flex:1;
-          border: 1px solid black;
-          //width: 50%;
-          //height: 100%;
-          //background-color: greenyellow;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .title{
+            width:60%;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            font-family: "思源黑体";
+            color: black;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+          }
+          .sign{
+            width:30px;
+            height:2px;
+            margin-top: 2px;
+            background-color: red;
+          }
+          .brief{
+            width: 50%;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-family: "思源黑体";
+            color: black;
+            overflow:hidden;
+          }
+          .content{
+            width: 70%;
+            margin-top: 17px;
+            text-align: center;
+            font-size: 13px;
+            font-family: "思源黑体";
+            color: #8d8d8d;
+            overflow: hidden;
+            text-overflow-ellipsis: true;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+          }
+          .detail{
+            width: 35%;
+            height: 48px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 16px;
+            font-family: "思源黑体";
+            color: red;
+            border: 2px solid black;
+            background-color: white;
+            cursor: pointer;
+          }
+          .detail:hover{
+            border: 2px solid red;
+            background-color: red;
+            color: white;
+          }
         }
       }
     }
+    .body_third{
+      width:100%;
+      height:700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #eeeeee;
+      margin-top: 70px;
+      flex-direction: column;
+      .title{
+        width:60%;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: "思源黑体";
+        color: black;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display:-webkit-box;
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:2;
+      }
+      .sign{
+        width:30px;
+        height:2px;
+        margin-top: 2px;
+        background-color: red;
+      }
+      .news{
+        display: flex;
+        flex-direction: row;
+        width: 85%;
+        height: 400px;
+        margin-top: 40px;
+        .news_details{
+          &:not(:first-child){
+            margin-left: 20px;
+          }
+          flex: 1;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          .img{
+            width:410px;
+            height:246px;
+          }
+          .details_title{
+            margin-top: 15px;
+            max-width:410px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 18px;
+            font-family: "思源黑体 Medium";
+            color: #333333;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .details_date{
+            margin-top: 15px;
+            height: 14px;
+            text-align: center;
+            line-height: 14px;
+            font-size: 12px;
+            color: #808080;
+            font-family: "思源黑体 Regular";
+          }
+          .details_content{
+            max-width: 410px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #808080;
+            font-family: "思源黑体 Regular";
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+          }
+        }
+      }
+      .detail{
+        width: 220px;
+        height: 48px;
+        line-height: 48px;
+        margin-top: 25px;
+        text-align: center;
+        font-size: 16px;
+        font-family: "思源黑体";
+        border: 2px solid black;
+        background-color: white;
+        cursor: pointer;
+        color: red;
+        border: 2px solid black;
+        background-color: #eeeeee;
+        transition: border 500ms,background-color 500ms,color 500ms;
+      }
+      .detail:hover{
+        border: 2px solid red;
+        background-color: red;
+        color: white;
+      }
+    }
+    .body_logo{
+      display: flex;
+      width: 1282px;
+      background-color: #e5e5e5;
+      flex-flow: row wrap;
+      align-content: space-around;
+      margin-top:100px;
+      .logo{
+        width:254px;
+        height:254px;
+        margin: 1px 1px 1px 1px;
+        transition: border 500ms;
+      }
+      .logo2{
+        width:509px;
+        height:254px;
+        margin: 1px 1px 1px 1px;
+        transition: border 500ms;
+        text-align: center;
+        line-height: 254px;
+        font-size: 30px;
+        background-color: white;
+        font-weight: bold;
+        font-family: "微软雅黑";
+        color: #606060;
+      }
+      .logo:hover{
+        border:1px solid black;
+      }
+      .logo2:hover{
+        border:1px solid black;
+      }
+
+    }
   }
   .foster_foot{
-
+      //position: absolute;
+      margin-top: 60px;
+      width: 100%;
+      height: 330px;
+      background-color: #101013;
+      position: relative;
+      //bottom: 0;
+      //clear: both;
+        .foot_right{
+          position: absolute;
+          bottom: 0px;
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          color: #2a2a2f;
+          text-align: center;
+          border-top: 1px solid #2a2a2f;
+        }
   }
 }
