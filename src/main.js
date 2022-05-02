@@ -7,12 +7,14 @@ import common from './utils/common';
 import store from './store/index';
 import * as echarts from 'echarts';
 import ajax from './utils/AjaxUtil';
+
 Vue.use(ElementUI);
 // 引入 i-view UI组件
 
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
-import '@/assets/iconfont/iconfont.css';
+// import '@/assets/iconfont2/iconfont2.css';
+import '@/assets/iconfont/iconfont.css'
 
 Vue.use(ViewUI)
 console.log(common, 'common')

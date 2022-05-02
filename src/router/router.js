@@ -13,7 +13,7 @@ const WarningInfo = () => import('../views/content/list/warningInfo')
 const notfound = () => import('../views/exception/notfound')
 const changePwd = () => import('../views/login/changePwd')
 const forest = () => import('../views/content/list/yqForest')
-
+const comp = () => import('../views/content/list/componentLibrary')
 
 Vue.prototype.$message = Message
 
@@ -63,6 +63,12 @@ const routers = new Router({
       name: 'forest',
       meta: '元气森林',
       component: forest,
+    },
+    {
+      path: '/comp',
+      name: 'comp',
+      meta: '元气森林',
+      component: comp,
     },
     {
       path: '/notfound',

@@ -7,7 +7,7 @@
         <div class="left_icon">元气森林</div>
       </div>
       <div class="bottom_center">
-        <div class="center_item" v-for="item in menuList" :key="item.name">
+        <div class="center_item" v-for="(item, index) in menuList" :key="index">
           <dropdown>
             <span style="color: black">
               {{ item.title }}
@@ -19,8 +19,14 @@
         </div>
       </div>
       <div class="bottom_right">
-        <div class="right_text" style="cursor: pointer" ref="language"  @click="changeBg(1)">中</div>
-        <div class="right_text" style="cursor: pointer" ref="form" @click="changeBg(2)">繁</div>
+        <div
+            v-for="(item, index) in languageList"
+            :key="index"
+            class="right_text"
+            :class="{'active': currentIndex === index}"
+            @click="changeBg(index)">
+          {{ item.name}}
+        </div>
       </div>
     </div>
   </div>
@@ -82,7 +88,6 @@
     </div>
     <div class="body_third">
       <span class="title">新闻资讯</span>
-      <span class="sign"></span>
       <span class="news">
         <div class="news_details">
           <span class="img"><img src="../../../assets/content/list/yqsl.jpg"  style="width: 100%; height: 246px"/></span>
@@ -105,20 +110,10 @@
       </span>
       <span class="detail">了解详情</span>
     </div>
-    <div class="body_logo">
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
-      <span class="logo"><img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 254px"/></span>
+    <div class="body_logo" >
+      <span class="logo" v-for="(item, index) in 13" :key="index">
+        <img src="../../../assets/content/list/logo.png"  style="width: 100%; height: 100%"/>
+      </span>
       <span class="logo2">敬请期待</span>
     </div>
   </div>
@@ -139,6 +134,15 @@ export default {
       menuList: window.ApplicationConfig.menuList,
       languageColor: "white",
       formColor: "white",
+      currentIndex:  1,
+      languageList: [
+        {
+          name: '中'
+        },
+        {
+          name: '繁'
+        }
+      ],
     }
   },
   created() {
@@ -165,29 +169,11 @@ export default {
     test(){
       alert("fafa")
     },
-    changeBg(sign){
-        if(sign == 1){
-          if(this.languageColor == "white"){
-            this.$refs.language.style.backgroundColor = "black"
-            this.$refs.language.style.color = "white"
-            this.languageColor = "black"
-          }else{
-            this.$refs.language.style.backgroundColor = "white"
-            this.$refs.language.style.color = "black"
-            this.languageColor = "white"
-          }
-        }if(sign == 2){
-          if(this.formColor == "white"){
-            this.$refs.form.style.backgroundColor = "black"
-            this.$refs.form.style.color = "white"
-            this.formColor = "black"
-          }else{
-            this.$refs.form.style.backgroundColor = "white"
-            this.$refs.form.style.color = "black"
-            this.formColor = "white"
-          }
-      }
+    changeBg(index){
+      this.currentIndex = index
     }
+
+
   }
 }
 </script>

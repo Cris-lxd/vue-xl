@@ -14,6 +14,7 @@
                   <DropdownItem @click.native="logout">退出登陆</DropdownItem>
                   <DropdownItem @click.native="warning">预警信息</DropdownItem>
                   <DropdownItem @click.native="forest">元气森林</DropdownItem>
+                  <DropdownItem @click.native="comp">组件</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
           </div>
@@ -84,6 +85,11 @@ export default {
     forest(){
       setTimeout(() => {
         this.$router.push('/forest')
+      },0)
+    },
+    comp(){
+      setTimeout(() => {
+        this.$router.push('/comp')
       },0)
     }
   }

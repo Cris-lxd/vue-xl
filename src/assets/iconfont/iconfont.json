@@ -1,16 +1,23 @@
 {
-  "id": "2867042",
-  "name": "vue-xl",
+  "id": "3280790",
+  "name": "自己",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "11488132",
-      "name": "Right button",
-      "font_class": "Rightbutton",
-      "unicode": "e765",
-      "unicode_decimal": 59237
+      "icon_id": "122691",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "122709",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
     }
   ]
 }
